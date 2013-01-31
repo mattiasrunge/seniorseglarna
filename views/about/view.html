@@ -1,0 +1,27 @@
+
+<div class="row-fluid">
+  <div class="span3">
+
+    <ul class="nav nav-pills nav-stacked">
+      <!-- ko foreach: aboutModel.textItems -->
+        <li data-bind="css: { active: $parent.aboutModel.type() === 'text' && $parent.aboutModel.index() === $index() }">
+          <a href="#" data-bind="text: $data.title, attr: { href: '#about:text:' + $index() }"></a>
+        </li>
+      <!-- /ko -->
+
+      <li class="nav-header">Mötesanteckningar</li>
+
+      <!-- ko foreach: aboutModel.protocolItems -->
+        <li data-bind="css: { active: $parent.aboutModel.type() === 'protocol' && $parent.aboutModel.index() === $index() }">
+          <a href="#" data-bind="htmlTimestamp: $data.timestamp, attr: { href: '#about:protocol:' + $index() }"></a>
+        </li>
+      <!-- /ko -->
+
+    </ul>
+
+  </div>
+
+  <div class="span9" style="padding-bottom: 20px;">
+    <span data-bind="html: aboutModel.text"></span>
+  </div>
+</div>

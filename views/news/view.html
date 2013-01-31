@@ -1,0 +1,30 @@
+
+<div class="row-fluid">
+  <div class="span7">
+
+    <div data-bind="foreach: newsModel.newsItems">
+      <blockquote>
+        <h4 data-bind="text: $data.title"></h4>
+        <p data-bind="html: $data.text"></p>
+        <small>Postat <span data-bind="htmlTimestampAgo: $data.timestamp"></span></small>
+      </blockquote>
+    </div>
+
+  </div>
+  <div class="span5">
+
+    <div class="well">
+      <h3>Program</h3>
+
+      <div style="max-height: 400px; overflow: auto;" data-bind="foreach: newsModel.programItems">
+        <div style="margin-bottom: 20px;">
+          <div style="border-bottom: 1px solid #ddd; margin-bottom: 10px; color: gray;" class="clearfix">
+            <span class="pull-right" data-bind="htmlTimestamp: $data.timestamp"></span>
+          </div>
+          <p data-bind="html: $data.text"></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

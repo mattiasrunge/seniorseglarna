@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="utf-8">
     <title>Seniorseglarna</title>
@@ -36,10 +36,6 @@
 
           <img class="thumbnail pull-right" src="img/fortissimo_small.jpg" style="height: 115px;">
 
-
-
-
-
           <div class="page-header" style="border-bottom-width: 0px; margin-bottom: 10px;">
             <h1>
               Seniorseglarna<br/>
@@ -49,8 +45,8 @@
 
           <div class="tabbable"> <!-- Only required for left/right tabs -->
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab1" data-toggle="tab">Nyheter</a></li>
-              <li><a href="#tab2" data-toggle="tab">Om oss</a></li>
+              <li data-bind="css: { active: newsModel.show }"><a href="#news">Nyheter</a></li>
+              <li data-bind="css: { active: aboutModel.show }"><a href="#about">Om oss</a></li>
               <li><a href="#tab3" data-toggle="tab">Forum</a></li>
               <li><a href="#tab3" data-toggle="tab">Gästbok</a></li>
               <li><a href="#tab4" data-toggle="tab">Galleri</a></li>
@@ -59,138 +55,13 @@
               <li class="pull-right"><a href="#tab6" data-toggle="tab">Logga in</a></li>
             </ul>
             <div class="tab-content">
-              <div class="tab-pane active" id="tab1" style="padding-bottom: 20px;">
-
-                <div class="row-fluid">
-                  <div class="span7">
-                    <h3>Nyheter</h3>
-
-                    <blockquote>
-                      <h5>En ny artikel finns</h5>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                      </p>
-                      <small>Postat av Mattias Runge den 31:e januari 2013</small>
-                    </blockquote>
-
-                    <blockquote>
-                      <h5>Ny hemsida!</h5>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                      </p>
-                      <small>Postat av Mattias Runge den 30:e januari 2013</small>
-                    </blockquote>
-
-                  </div>
-                  <div class="span5">
-
-
-
-<h3>Program</h3>
-<div style="max-height: 400px; overflow: auto;">
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">9:e januari</span>
-                      <p style="margin-top: 5px;">
-                        Bengt inleder vårterminen
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">6:e januari</span>
-                      <p style="margin-top: 5px;">
-                        Fartyget Isolda,<br/>
-                        <i>Tommy Andersson berättar</i>
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">23:e januari</span>
-                      <p style="margin-top: 5px;">
-                        Mitt båtliv<br/>
-                        <i>Lennart Wolter</i>
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">30:e januari</span>
-                      <p style="margin-top: 5px;">
-                        Sjöräddningen idag och i framtiden<br/>
-                        Thore Hagman, SSRS
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">6:e februari</span>
-                      <p style="margin-top: 5px;">
-                        Båtmässan
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">13:e februari</span>
-                      <p style="margin-top: 5px;">
-                        Fiskemuseet på Hönö, Guidning och fika
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">20:e februari</span>
-                      <p style="margin-top: 5px;">
-                        Lejdtrafiken<br/>
-                        <i>Lars Zimmermann</i>
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">27:e februari</span>
-                      <p style="margin-top: 5px;">
-                        Renovering av Maxi 77<br/>
-                        <i>Jacob Johansson</i>
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">6:e mars</span>
-                      <p style="margin-top: 5px;">
-                        Mitt båtliv
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">13:e mars</span>
-                      <p style="margin-top: 5px;">
-                        Prylaktion<br/>
-                        <i>Cay Englund</i>
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">27:e mars</span>
-                      <p style="margin-top: 5px;">
-                        The Swinging Sailors
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">3:e april</span>
-                      <p style="margin-top: 5px;">
-                        Skärgårdstur med promenad och fika
-                      </p>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                      <span class="label label-info">10:e april</span>
-                      <p style="margin-top: 5px;">
-                        Avslutning, lunch i Kungarummet på GKSS Seglarkrog
-                      </p>
-                    </div>
-      </div>
-
-                  </div>
-                </div>
-
-
+              <div class="tab-pane" data-bind="css: { active: newsModel.show }">
+                <? include("./views/news/view.html"); ?>
               </div>
+              <div class="tab-pane" data-bind="css: { active: aboutModel.show }">
+                <? include("./views/about/view.html"); ?>
+              </div>
+
                <div class="tab-pane" id="tab5">
 
                 <div class="row-fluid">
@@ -241,11 +112,16 @@
 
                 <div class="row-fluid">
                   <div class="span3">
-                    <ul class="nav nav-pills nav-stacked">
-                      <li><a href="#">Om oss</a></li>
-                      <li class="active"><a href="#">Stadgar</a></li>
-                      <li><a href="#">Protokoll</a></li>
-                    </ul>
+
+
+                  <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#">Om oss</a></li>
+                    <li><a href="#">Stadgar</a></li>
+                    <li class="nav-header">Mötesanteckningar</li>
+                    <li><a href="#">2013-01-01</a></li>
+                  </ul>
+
+
                   </div>
 
                   <div class="span9" style="padding-bottom: 20px;">
@@ -483,7 +359,6 @@ Styrelsen skall bestå av
       </div>
     </div>
 
-    <!-- Third-party script files -->
     <script src="http://code.jquery.com/jquery-1.9.0.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
 
@@ -493,46 +368,81 @@ Styrelsen skall bestå av
     <script src="js/moment.min.js"></script>
     <script src="js/jquery.history.min.js"></script>
     <script src="js/jquery.anystretch.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/knockout.extensions.js"></script>
 
+    <script src="views/news/model.js"></script>
+    <script src="views/about/model.js"></script>
+    <script src="views/model.js"></script>
 
-    <!-- Initialization scripts and definitions -->
     <script>
 
       $(function()
       {
+        moment.lang('sv', {
+          months : "januari_februari_mars_april_maj_juni_juli_augusti_september_oktober_november_december".split("_"),
+          monthsShort : "jan_feb_mar_apr_maj_jun_jul_aug_sep_okt_nov_dec".split("_"),
+          weekdays : "söndag_måndag_tisdag_onsdag_torsdag_fredag_lördag".split("_"),
+          weekdaysShort : "sön_mån_tis_ons_tor_fre_lör".split("_"),
+          weekdaysMin : "sö_må_ti_on_to_fr_lö".split("_"),
+          longDateFormat : {
+            LT : "HH:mm",
+            L : "YYYY-MM-DD",
+            LL : "D MMMM YYYY",
+            LLL : "D MMMM YYYY LT",
+            LLLL : "dddd D MMMM YYYY LT"
+          },
+          calendar : {
+            sameDay: '[Idag klockan] LT',
+            nextDay: '[Imorgon klockan] LT',
+            lastDay: '[Igår klockan] LT',
+            nextWeek: 'dddd [klockan] LT',
+            lastWeek: '[Förra] dddd[en klockan] LT',
+            sameElse: 'L'
+          },
+          relativeTime : {
+            future : "om %s",
+            past : "för %s sedan",
+            s : "några sekunder",
+            m : "en minut",
+            mm : "%d minuter",
+            h : "en timme",
+            hh : "%d timmar",
+            d : "en dag",
+            dd : "%d dagar",
+            M : "en månad",
+            MM : "%d månader",
+            y : "ett år",
+            yy : "%d år"
+          },
+          ordinal : function (number) {
+            var b = number % 10,
+              output = (~~ (number % 100 / 10) === 1) ? 'e' :
+              (b === 1) ? 'a' :
+              (b === 2) ? 'a' :
+              (b === 3) ? 'e' : 'e';
+            return number + output;
+          },
+          week : {
+            dow : 1, // Monday is the first day of the week.
+            doy : 4  // The week that contains Jan 4th is the first week of the year.
+          }
+        });
+
         $.anystretch("img/background.jpg", {speed: 300});
 
-        /* Apply bindings on base model */
-//       ko.applyBindings(murrix.model);
+        ko.applyBindings(mainModel);
 
 
-        /* HACK: Disable closing of popup in login form */
-        $(".dropdown-menu input, .dropdown-menu label").click(function(e)
-        {
-          e.stopPropagation();
-        });
-
-
-        /* Bind function to change content based on path */
         jQuery.History.bind(function(state)
         {
-          /* HACK: Close open dropdowns */
-          $(".dropdown.open .dropdown-toggle").dropdown("toggle");
-
-          /* Update the current path of the base model */
-  //        murrix.updatePath(state, murrix.model.path);
+          mainModel.args(state.split(":"));
         });
 
-
-        /* HACK?: Trigger loading if no path is set */
         if (document.location.hash.length === 0)
         {
           jQuery.History.trigger("");
         }
-
-
-        /* Clear loading overlay */
-    //    $(".loading-overlay").fadeOut();
       });
 
     </script>
