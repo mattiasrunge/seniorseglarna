@@ -1,0 +1,6 @@
+*~
+cache/*
+!cache/.htaccess
+files/*
+!files/.htaccess
+config.php
