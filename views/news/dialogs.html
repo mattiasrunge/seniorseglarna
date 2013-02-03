@@ -1,0 +1,42 @@
+
+<div id="dialogNewsEdit" class="modal hide fade" data-keyboard="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-bind="disable: newsModel.newsEdit.loading">&times;</button>
+    <h3 data-bind="visible: newsModel.newsEdit.item() === false">Posta en nyhet</h3>
+    <h3 data-bind="visible: newsModel.newsEdit.item() !== false">Ändra nyhet</h3>
+  </div>
+  <div class="modal-body">
+
+    <div style="margin-right: 10px;">
+      <input placeholder="Skriv en titel..." type="text" style="width: 100%; margin-bottom: 20px;" data-bind="disable: newsModel.newsEdit.loading, value: newsModel.newsEdit.vars['title']"/>
+    </div>
+
+    <textarea id="dialogNewsEditText" style="width: 520px; height: 260px; margin-bottom: 0px;" placeholder="Skriv en text..." data-bind="wysihtml5: newsModel.newsEdit.vars['text']"></textarea>
+  </div>
+  <div class="modal-footer">
+    <p class="pull-left text-error" data-bind="visible: newsModel.newsEdit.error">Misslyckades med att spara nyheten</p>
+    <a href="#" class="btn" data-dismiss="modal" data-bind="disable: newsModel.newsEdit.loading" data-dismiss="modal">Avbryt</a>
+    <a href="#" class="btn btn-primary" data-bind="disable: newsModel.newsEdit.loading, click: newsModel.newsEdit.save">Spara</a>
+  </div>
+</div>
+
+<div id="dialogProgramEdit" class="modal hide fade" data-keyboard="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-bind="disable: newsModel.programEdit.loading">&times;</button>
+    <h3 data-bind="visible: newsModel.programEdit.item() === false">Skriv en programpunkt</h3>
+    <h3 data-bind="visible: newsModel.programEdit.item() !== false">Ändra en programpunkt</h3>
+  </div>
+  <div class="modal-body">
+
+    <div style="margin-right: 10px; margin-bottom: 10px;">
+      <input placeholder="Skriv en datum..." style="width: 100%" size="16" type="text" data-date-format="yyyy-mm-dd" data-bind="disable: newsModel.programEdit.loading, datepicker: newsModel.programEdit.vars['date']">
+    </div>
+
+    <textarea id="dialogProgramEditText" style="width: 520px; height: 260px; margin-bottom: 0px;" placeholder="Skriv en text..." data-bind="wysihtml5: newsModel.programEdit.vars['text']"></textarea>
+  </div>
+  <div class="modal-footer">
+    <p class="pull-left text-error" data-bind="visible: newsModel.programEdit.error">Misslyckades med att spara programpunkt</p>
+    <a href="#" class="btn" data-dismiss="modal" data-bind="disable: newsModel.programEdit.loading" data-dismiss="modal">Avbryt</a>
+    <a href="#" class="btn btn-primary" data-bind="disable: newsModel.programEdit.loading, click: newsModel.programEdit.save">Spara</a>
+  </div>
+</div>

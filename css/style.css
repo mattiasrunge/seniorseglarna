@@ -1,6 +1,38 @@
 
 body {
   font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #DAE6EE;
+  overflow-y: scroll;
 }
 
+.center-container {
+  position: relative;
+  width: 1000px;
+  margin: 50px auto 50px auto;
+}
 
+.main-container {
+  position: relative;
+  padding: 20px;
+  z-index: 2;
+}
+
+.main-background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  opacity: 0.9;
+}
+
+.main-header {
+  border-bottom-width: 0px;
+  margin-bottom: 10px;
+}
+
+.main-logo {
+  width: 100px;
+  height: 100px;
+  margin-right: 30px;
+}

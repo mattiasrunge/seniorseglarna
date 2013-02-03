@@ -1,0 +1,19 @@
+
+<div id="dialogMemberEdit" class="modal hide fade" data-keyboard="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-bind="disable: membersModel.memberEdit.loading">&times;</button>
+    <h3 data-bind="visible: membersModel.memberEdit.item() === false">Skapa en ny medlem</h3>
+    <h3 data-bind="visible: membersModel.memberEdit.item() !== false">Ändra medlem</h3>
+  </div>
+  <div class="modal-body">
+
+    <div style="margin-right: 10px;">
+      <input placeholder="Skriv ett namn..." type="text" style="width: 100%; margin-bottom: 20px;" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['name']"/>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <p class="pull-left text-error" data-bind="visible: membersModel.memberEdit.error">Misslyckades med att spara medlemmen</p>
+    <a href="#" class="btn" data-dismiss="modal" data-bind="disable: membersModel.memberEdit.loading" data-dismiss="modal">Avbryt</a>
+    <a href="#" class="btn btn-primary" data-bind="disable: membersModel.memberEdit.loading, click: membersModel.memberEdit.save">Spara</a>
+  </div>
+</div>

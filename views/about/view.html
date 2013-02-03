@@ -3,17 +3,57 @@
   <div class="span3">
 
     <ul class="nav nav-pills nav-stacked">
-      <!-- ko foreach: aboutModel.textItems -->
+      <li class="nav-header">
+        Om oss
+        <span class="pull-right" data-bind="visible: profileModel.isAdmin">
+          <a href="#" data-bind="click: aboutModel.textEdit.open" title="Skriv text" style="text-decoration: none; text-transform: none;"><i class="icon-file"></i> Skriv ny</a>
+        </span>
+      </li>
+
+       <div class="alert alert-error" data-bind="visible: aboutModel.textItems.error">
+        <strong>Fel!</strong>
+        Misslyckades med att ladda texter!
+      </div>
+
+      <div data-bind="template: { name: 'loadingTemplate', if: aboutModel.textItems.loading, data: 'texter' }"></div>
+
+      <!-- ko foreach: aboutModel.textItems.items -->
         <li data-bind="css: { active: $parent.aboutModel.type() === 'text' && $parent.aboutModel.index() === $index() }">
-          <a href="#" data-bind="text: $data.title, attr: { href: '#about:text:' + $index() }"></a>
+          <a href="#" data-bind="attr: { href: '#about:text:' + $index() }">
+            <span class="pull-right" data-bind="visible: $parent.profileModel.isAdmin">
+              &nbsp;
+              <span data-bind="click: $parent.aboutModel.textEdit.open" title="Ändra programpunkt" style="text-decoration: none;"><i class="icon-pencil"></i></span>
+              <span data-bind="click: $parent.aboutModel.textEdit.remove" title="Ta bort programpunkt" style="text-decoration: none;"><i class="icon-trash"></i></span>
+            </span>
+            <span data-bind="text: $data.name"></span>
+          </a>
         </li>
       <!-- /ko -->
 
-      <li class="nav-header">Mötesanteckningar</li>
+      <li class="nav-header">
+        Mötesanteckningar
+        <span class="pull-right" data-bind="visible: profileModel.isAdmin">
+          <a href="#" data-bind="click: aboutModel.protocolEdit.open" title="Skriv text" style="text-decoration: none; text-transform: none;"><i class="icon-file"></i> Skriv ny</a>
+        </span>
+      </li>
 
-      <!-- ko foreach: aboutModel.protocolItems -->
+      <div class="alert alert-error" data-bind="visible: aboutModel.protocolItems.error">
+        <strong>Fel!</strong>
+        Misslyckades med att ladda mötesanteckningar!
+      </div>
+
+      <div data-bind="template: { name: 'loadingTemplate', if: aboutModel.protocolItems.loading, data: 'mötesanteckningar' }"></div>
+
+      <!-- ko foreach: aboutModel.protocolItems.items -->
         <li data-bind="css: { active: $parent.aboutModel.type() === 'protocol' && $parent.aboutModel.index() === $index() }">
-          <a href="#" data-bind="htmlTimestamp: $data.timestamp, attr: { href: '#about:protocol:' + $index() }"></a>
+          <a href="#" data-bind="attr: { href: '#about:protocol:' + $index() }">
+            <span class="pull-right" data-bind="visible: $parent.profileModel.isAdmin">
+              &nbsp;
+              <span data-bind="click: $parent.aboutModel.protocolEdit.open" title="Ändra mötesanteckning" style="text-decoration: none;"><i class="icon-pencil"></i></span>
+              <span data-bind="click: $parent.aboutModel.protocolEdit.remove" title="Ta bort mötesanteckning" style="text-decoration: none;"><i class="icon-trash"></i></span>
+            </span>
+            <span data-bind="htmlTimestampDate: $data.date"></span>
+          </a>
         </li>
       <!-- /ko -->
 
@@ -21,7 +61,8 @@
 
   </div>
 
-  <div class="span9" style="padding-bottom: 20px;">
-    <span data-bind="html: aboutModel.text"></span>
+  <div class="span9" style="padding-bottom: 20px;" data-bind="if: aboutModel.text() !== false">
+    <h2 data-bind="text: aboutModel.text().title"></h2>
+    <span data-bind="html: aboutModel.text().text"></span>
   </div>
 </div>

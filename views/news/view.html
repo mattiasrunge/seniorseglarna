@@ -1,27 +1,58 @@
 
-<div class="row-fluid">
-  <div class="span7">
+<div class="row-fluid" style="padding-bottom: 20px;">
+  <div class="span8">
 
-    <div data-bind="foreach: newsModel.newsItems">
-      <blockquote>
-        <h4 data-bind="text: $data.title"></h4>
+    <div data-bind="visible: profileModel.isAdmin"><a href="#" data-bind="click: newsModel.newsEdit.open" title="Posta nyhet" style="text-decoration: none;"><i class="icon-file"></i> Posta nyhet</a></div>
+
+    <div class="alert alert-error" data-bind="visible: newsModel.newsError">
+      <strong>Fel!</strong>
+      Misslyckades med att ladda nyheterna!
+    </div>
+
+    <div data-bind="template: { name: 'loadingTemplate', if: newsModel.newsItems.loading, data: 'nyheter' }"></div>
+
+    <div data-bind="foreach: newsModel.newsItems.items">
+      <div style="margin-top: 30px;">
+        <h4>
+          <span data-bind="text: $data.title"></span>
+          <span data-bind="visible: $parent.profileModel.isAdmin">
+            &nbsp;
+            <a href="#" data-bind="click: $parent.newsModel.newsEdit.open" title="Ändra nyhet" style="text-decoration: none;"><i class="icon-pencil"></i></a>
+            <a href="#" data-bind="click: $parent.newsModel.newsEdit.remove" title="Ta bort nyhet" style="text-decoration: none;"><i class="icon-trash"></i></a>
+          </span>
+        </h4>
         <p data-bind="html: $data.text"></p>
-        <small>Postat <span data-bind="htmlTimestampAgo: $data.timestamp"></span></small>
-      </blockquote>
+        <div class="muted" style="font-size: 12px;"><i> &mdash; Postat <span data-bind="htmlTimestampAgo: $data.timestamp"></span></i></div>
+      </div>
     </div>
 
   </div>
-  <div class="span5">
+  <div class="span4">
 
-    <div class="well">
-      <h3>Program</h3>
+    <div class="alert alert-error" data-bind="visible: newsModel.programError">
+      <strong>Fel!</strong>
+      Misslyckades med att ladda programpunkter!
+    </div>
 
-      <div style="max-height: 400px; overflow: auto;" data-bind="foreach: newsModel.programItems">
-        <div style="margin-bottom: 20px;">
+    <div data-bind="template: { name: 'loadingTemplate', if: newsModel.programItems.loading, data: 'programpunkter' }"></div>
+
+    <div class="well" style="overflow: auto; background-color: white;">
+
+      <h4 style="text-align: center; font-size: 50px; color: #eee; text-transform: uppercase;">Program</h4>
+      <div data-bind="visible: profileModel.isAdmin" style="padding-top: 10px;">
+        <a href="#" data-bind="click: newsModel.programEdit.open" title="Skapa programpunkt" style="text-decoration: none;"><i class="icon-file"></i> Skapa ny</a>
+      </div>
+
+      <div data-bind="foreach: newsModel.programItems.items, visible: !newsModel.programItems.loading() && newsModel.programItems.items().length > 0">
+        <div style="margin-top: 30px;">
           <div style="border-bottom: 1px solid #ddd; margin-bottom: 10px; color: gray;" class="clearfix">
-            <span class="pull-right" data-bind="htmlTimestamp: $data.timestamp"></span>
+            <div class="pull-right" data-bind="htmlTimestampDate: $data.date"></div>
+            <div data-bind="visible: $parent.profileModel.isAdmin">
+              <a href="#" data-bind="click: $parent.newsModel.programEdit.open" title="Ändra programpunkt" style="text-decoration: none;"><i class="icon-pencil"></i></a>
+              <a href="#" data-bind="click: $parent.newsModel.programEdit.remove" title="Ta bort programpunkt" style="text-decoration: none;"><i class="icon-trash"></i></a>
+            </div>
           </div>
-          <p data-bind="html: $data.text"></p>
+          <p data-bind="html: $data.text" style="text-align: right;"></p>
         </div>
       </div>
     </div>

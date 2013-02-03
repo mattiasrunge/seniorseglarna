@@ -12,350 +12,112 @@
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet">
+    <link href="css/datepicker.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
   </head>
 
-  <body style="background-color: #CCEEFF;">
-
-    <div style="width: 1000px; margin: 50px auto 50px auto;">
-      <div style="position: relative;">
-
-        <div style="padding: 20px; position: relative; z-index: 2;">
-
-          <img class="pull-left" src="img/logo.png" style="width: 100px; height: 100px; margin-right: 30px;"/>
-
-          <img class="thumbnail pull-right" src="img/fortissimo_small.jpg" style="height: 115px;">
-
-          <div class="page-header" style="border-bottom-width: 0px; margin-bottom: 10px;">
-            <h1>
-              Seniorseglarna<br/>
-              <small><i>En förening för seglingsintresserade</i></small>
-            </h1>
-          </div>
-
-          <div class="tabbable"> <!-- Only required for left/right tabs -->
-            <ul class="nav nav-tabs">
-              <li data-bind="css: { active: newsModel.show }"><a href="#news">Nyheter</a></li>
-              <li data-bind="css: { active: aboutModel.show }"><a href="#about">Om oss</a></li>
-              <li><a href="#tab3" data-toggle="tab">Forum</a></li>
-              <li><a href="#tab3" data-toggle="tab">Gästbok</a></li>
-              <li><a href="#tab4" data-toggle="tab">Galleri</a></li>
-              <li><a href="#tab5" data-toggle="tab">Artiklar</a></li>
-
-              <li class="pull-right"><a href="#tab6" data-toggle="tab">Logga in</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane" data-bind="css: { active: newsModel.show }">
-                <? include("./views/news/view.html"); ?>
-              </div>
-              <div class="tab-pane" data-bind="css: { active: aboutModel.show }">
-                <? include("./views/about/view.html"); ?>
-              </div>
-
-               <div class="tab-pane" id="tab5">
-
-                <div class="row-fluid">
-                  <div class="span3">
-                    <ul class="nav nav-pills nav-stacked">
-                      <li><a href="#">2013</a></li>
-                      <li class="active"><a href="#">2012</a></li>
-                      <li><a href="#">2011</a></li>
-                      <li><a href="#">2010</a></li>
-                      <li><a href="#">2009</a></li>
-                      <li><a href="#">2008</a></li>
-                      <li><a href="#">2007</a></li>
-                      <li><a href="#">2006</a></li>
-                      <li><a href="#">2005</a></li>
-                      <li><a href="#">2004</a></li>
-                      <li><a href="#">2003</a></li>
-
-                    </ul>
-                  </div>
-
-                  <div class="span9">
-
-<div class="media well" style="background-color: white;">
-  <a class="pull-left" href="#">
-    <img class="media-object thumbnail" style="width: 125px; height: 125px;" src="img/artikel1.jpg">
-  </a>
-  <div class="media-body">
-    <h4 class="media-heading">Eskadersegling 2011</h4>
-    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-  </div>
-</div>
-
-<div class="media well" style="background-color: white;">
-  <a class="pull-left" href="#">
-    <img class="media-object thumbnail" style="width: 125px; height: 125px;" src="img/artikel2.jpg">
-  </a>
-  <div class="media-body">
-    <h4 class="media-heading">En tur på havet</h4>
-    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-  </div>
-</div>
-
-                  </div>
-                </div>
-              </div>
-
-              <div class="tab-pane" id="tab2">
-
-                <div class="row-fluid">
-                  <div class="span3">
-
-
-                  <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#">Om oss</a></li>
-                    <li><a href="#">Stadgar</a></li>
-                    <li class="nav-header">Mötesanteckningar</li>
-                    <li><a href="#">2013-01-01</a></li>
-                  </ul>
-
-
-                  </div>
-
-                  <div class="span9" style="padding-bottom: 20px;">
-                    <h3>Stadgar</h3>
-<div style="max-height: 400px; overflow: auto;">
-<h4>§1 Föreningens syfte</h4>
-<p>
-Föreningen har till syfte att samla seglingsintresserade seniorer  med eller utan båt. Genom samverkan och ömsesidig hjälp skall föreningen medverka till ett rikare och mer aktivt båtliv.
-Föreningen skall också verka för aktivitetsutbyte mellan olika kustområden.
-</p>
-
-
-<h4>§2     Verksamhet     </h4>
-<p>
-Räkenskapsår skall omfatta tiden 1 oktober - 30 september.
-Årsmöte skall hållas senast 15 november.
-
-Kallelse till mötet skall ske senast 12 dagar före mötet. Kallelsen samt protokollutskick skall ske på de kanaler som krävs för att alla skall nås.
-</p>
-
-
-<h4>§3     Avgifter  </h4>
-<p>
-Avgifter för räkenskapsåret fastställs på årsmötet och erläggs före 1 februari påföljande år.
-</p>
-
-
-<h4>§4     Föredragningslistor till möten </h4>
-<p>
-
-  <h5>       Vid mötet skall förekomma:</h5>
-
-                         <ol>
-<li>       Val av ordförande att leda mötet</li>
-
-<li>     Godkännande av röstlängden</li>
-
-<li>     Fråga om mötets stadgeenliga
-          utlysande</li>
-
-<li>      Val av två personer att justera                         mötesprotokollet</li>
-
-
-</ol>
-
-<h5>  Vid årsmöte skall dessutom förekomma:</h5>
-
-<ol start="5">
-
-<li>     Föredragning av styrelsens
-         och revisorernas berättelse</li>
-
-<li>       Fastställande av balansräkningen</li>
-
-<li>       Fråga om ansvarsfrihet för                             styrelsen                                              </li>
-
-<li>        Val av styrelseledamöter, revisorer                och ledamöter till valberedningen                                                 </li>
-
-<li>       Fastställande av föreningens inkomst-           och utgiftsstat för löpande                              räkenskapsåret 1 oktober -
-          30 september    </li>
-
-<li>      Fastställande av avgifter</li>
-</ol>
-</p>
-
-
-<h4>§5     Styrelse, revisorer och valberedning</h4>
-<p>
-
-Styrelsen skall bestå av
-
-   Dels ordförande och vice ordförande
-   utsedda för två år   ,
-
-   dels två övriga ordinarie ledamöter,
-   utsedda för två år
-
-    samt en suppleant, utsedd för ett år.
-
-    Revisor och suppleant utses för ett år.
-
-    Valberedning skall bestå av två
-    ledamöter, som utses för ett år.
-
-    Styrelsen skall konstituera sig inom 14
-    dagar efter årsmötet, vid nyval av
-    styrelse eller styrelseledamot.
-</p>
-
-
-<h4>§6     Omröstning på möte, ändring av stadgar, mm</h4>
-<p>
-         Omröstning sker öppet om ej annat
-          begäres.
-          Medlem kan genom fullmakter på
-          möte rösta för högst fem
-          röstberättigade medlemmar.
-
-         Fullmakterna granskas av två av
-         styrelsen utsedda medlemmar.
-
-         Beslut fattas med enkel majoritet, dock
-         att för ändring av föreningens stadgar
-         erfordras 2/3 majoritet.
-
-          Beslut om föreningens upplösning kan           endast ske med 3/4 majoritet.
-
-          Vid upplösning av föreningen tillfaller
-          kvarvarande medel Sjöräddningen.
-</p>
-                  </div>
-                </div>
-
-</div>
-              </div>
-
-              <div class="tab-pane" id="tab3">
-
-              <div class="row-fluid">
-                  <div class="span3">
-                    <ul class="nav nav-pills nav-stacked">
-                      <li class="active"><a href="#">Allt om båtar</a></li>
-                      <li><a href="#">Glada minnen</a></li>
-                      <li><a href="#">Allt om hamnar</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="span9">
-
-
-
-                <table class="table table-striped">
-                  <thead>
-                    <th>Ämne</th>
-                    <th>Författare</th>
-                    <th>Senaste&nbsp;uppdaterad</th>
-                    <th>Antal&nbsp;inlägg</th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Fin båt!</td>
-                      <td>Bengt Runge</td>
-                      <td>Idag</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <td>Vädret är inte bra</td>
-                      <td>Jan Perlander</td>
-                      <td>Igår</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <td>En väldigt bra hamn</td>
-                      <td>Bengt Runge</td>
-                      <td>Måndag den 13:e mars</td>
-                      <td>3</td>
-                    </tr>
-                    <tr>
-                      <td>Segel</td>
-                      <td>Mattias Runge</td>
-                      <td>Torsdag den 3:e januari</td>
-                      <td>4</td>
-                    </tr>
-                  </tbody>
-                </table>
-
-
-                <div class="pagination pagination-centered">
-                  <ul>
-                    <li><a href="#">Föregående</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">Nästa</a></li>
-                  </ul>
-                </div>
-
-              </div>
-              </div>
-              </div>
-
-              <div class="tab-pane" id="tab4">
-                <div class="row-fluid">
-                <ul class="thumbnails">
-              <li class="span4">
-                <div class="thumbnail" style="background-color: white;">
-                  <img alt="300x200" style="width: 300px; height: 200px;" src="img/fortissimo_small.jpg">
-                  <div class="caption">
-                    <h3>Lite bilder på en Fortissimo</h3>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                  </div>
-                </div>
-              </li>
-              <li class="span4">
-                <div class="thumbnail" style="background-color: white;">
-                  <img alt="300x200" style="width: 300px; height: 200px;" src="img/allegro_small.jpg">
-                  <div class="caption">
-                    <h3>Bilder på en vacker Allegro</h3>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                  </div>
-                </div>
-              </li>
-              <li class="span4">
-                <div class="thumbnail" style="background-color: white;">
-                  <img alt="300x200" style="width: 300px; height: 200px;" src="img/motorbat_small.jpg">
-                  <div class="caption">
-                    <h3>Bilder på fula motorbåtar</h3>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                  </div>
-                </div>
-              </li>
-            </ul>
+  <body>
+    <script type="text/html" id="loadingTemplate">
+      <div class="well" style="background-color: white;">
+        <h4>Laddar <span data-bind="text: $data"></span>...</h4>
+        <div class="progress progress-striped active" style="margin-bottom: 0px;">
+          <div class="bar" style="width: 80%;"></div>
+        </div>
+      </div>
+    </script>
+
+    <? include("./views/news/dialogs.html"); ?>
+    <? include("./views/about/dialogs.html"); ?>
+    <? include("./views/forum/dialogs.html"); ?>
+    <? include("./views/members/dialogs.html"); ?>
+
+    <div class="center-container">
+
+      <div class="well main-background"></div>
+
+      <div class="main-container">
+        <div class="pull-right" style="padding-right: 15px;">
+          <div class="nav-header" style="padding-right: 0px; text-align: right;">Kontakt</div>
+          <a href="mailto:">info@seniorseglarna.se</a>
+        </div>
+
+        <img class="pull-left main-logo" alt="" src="img/logo.png"/>
+
+        <div class="page-header main-header">
+          <h1>
+            Seniorseglarna<br/>
+            <small><i>En förening för seglingsintresserade</i></small>
+          </h1>
+        </div>
+
+        <!--<img class="thumbnail pull-right" alt="" src="img/fortissimo_small.jpg" style="height: 80px;">-->
+
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+            <li data-bind="css: { active: newsModel.show }">
+              <a href="#news">Nyheter</a>
+            </li>
+            <li data-bind="css: { active: aboutModel.show }">
+              <a href="#about">Om oss</a>
+            </li>
+            <li data-bind="css: { active: guestbookModel.show }">
+              <a href="#guestbook">Gästbok</a>
+            </li>
+            <li data-bind="css: { active: forumModel.show }">
+              <a href="#forum">Forum</a>
+            </li>
+            <li data-bind="css: { active: galleryModel.show }">
+              <a href="#gallery">Galleri</a>
+            </li>
+            <li data-bind="css: { active: storiesModel.show }">
+              <a href="#stories">Logböcker</a>
+            </li>
+
+            <li class="pull-right" data-bind="css: { active: profileModel.show }">
+              <a href="#profile">
+                <span data-bind="visible: profileModel.user() === false">Logga in</span>
+                <span data-bind="visible: profileModel.user() !== false, text: profileModel.user().name"></span>
+              </a>
+            </li>
+            <li class="pull-right" data-bind="css: { active: membersModel.show }, visible: profileModel.user() !== false">
+              <a href="#members">Medlemmar</a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane" data-bind="css: { active: newsModel.show }">
+              <? include("./views/news/view.html"); ?>
             </div>
-                 <div class="pagination pagination-centered">
-                  <ul>
-                    <li><a href="#">Föregående</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">Nästa</a></li>
-                  </ul>
-                </div>
-              </div>
+            <div class="tab-pane" data-bind="css: { active: aboutModel.show }">
+              <? include("./views/about/view.html"); ?>
+            </div>
+            <div class="tab-pane" data-bind="css: { active: guestbookModel.show }">
+              <? include("./views/guestbook/view.html"); ?>
+            </div>
+            <div class="tab-pane" data-bind="css: { active: forumModel.show }">
+              <? include("./views/forum/view.html"); ?>
+            </div>
+            <div class="tab-pane" data-bind="css: { active: galleryModel.show }">
+              <? include("./views/gallery/view.html"); ?>
+            </div>
+            <div class="tab-pane" data-bind="css: { active: storiesModel.show }">
+              <? include("./views/stories/view.html"); ?>
+            </div>
+            <div class="tab-pane" data-bind="css: { active: membersModel.show }">
+              <? include("./views/members/view.html"); ?>
+            </div>
+            <div class="tab-pane" data-bind="css: { active: profileModel.show }">
+              <? include("./views/profile/view.html"); ?>
             </div>
           </div>
 
         </div>
-
-        <div class="well" style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; opacity: 0.9"></div>
       </div>
     </div>
 
@@ -367,12 +129,23 @@ Styrelsen skall bestå av
     <script src="js/bootstrap.min.js"></script>
     <script src="js/moment.min.js"></script>
     <script src="js/jquery.history.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/wysihtml5-0.3.0.js"></script>
+    <script src="js/bootstrap-wysihtml5-0.0.2.min.js"></script>
     <script src="js/jquery.anystretch.min.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/knockout.extensions.js"></script>
-
+    <script src="js/server.js"></script>
+    <script src="views/editModel.js"></script>
+    <script src="views/itemsModel.js"></script>
     <script src="views/news/model.js"></script>
     <script src="views/about/model.js"></script>
+    <script src="views/guestbook/model.js"></script>
+    <script src="views/forum/model.js"></script>
+    <script src="views/gallery/model.js"></script>
+    <script src="views/stories/model.js"></script>
+    <script src="views/members/model.js"></script>
+    <script src="views/profile/model.js"></script>
     <script src="views/model.js"></script>
 
     <script>
@@ -432,7 +205,6 @@ Styrelsen skall bestå av
         $.anystretch("img/background.jpg", {speed: 300});
 
         ko.applyBindings(mainModel);
-
 
         jQuery.History.bind(function(state)
         {

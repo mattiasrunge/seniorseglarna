@@ -5,31 +5,35 @@ function NewsModel(parentModel)
 
   self.show = ko.computed(function()
   {
-    return parentModel.args().length === 0 || parentModel.args()[0] === "news";
+    return parentModel.args().length === 0 || parentModel.args()[0] === "" || parentModel.args()[0] === "news";
   });
 
-  self.newsItems = ko.observableArray();
-  self.programItems = ko.observableArray();
+
+  self.newsEdit = new EditModel(self, "news", "#dialogNewsEdit", function()
+  {
+    self.newsItems.update();
+  });
+
+  self.newsEdit.addVar("title");
+  self.newsEdit.addVar("text");
 
 
-  /* TODO: Temporary information */
-  var item = {};
+  self.newsItems = new ItemsModel(self, {}, { collection: "news", limit: 5, sort: "timestamp" }, sortTimestamp);
 
-  item.title = "En nyhetsrubrik";
-  item.timestamp = new Date().getTime();
-  item.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.";
-
-  self.newsItems.push(item);
-  self.newsItems.push(item);
-  self.newsItems.push(item);
+  self.newsItems.update();
 
 
-  var item = {};
 
-  item.timestamp = new Date().getTime();
-  item.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.";
+  self.programEdit = new EditModel(self, "program", "#dialogProgramEdit", function()
+  {
+    self.programItems.update();
+  });
 
-  self.programItems.push(item);
-  self.programItems.push(item);
-  self.programItems.push(item);
+  self.programEdit.addVar("date");
+  self.programEdit.addVar("text");
+
+
+  self.programItems = new ItemsModel(self, {}, "program", sortDate);
+
+  self.programItems.update();
 };

@@ -18,52 +18,46 @@ function AboutModel(parentModel)
     return parentModel.args().length > 2 ? parseInt(parentModel.args()[2], 10) : 0;
   });
 
-  self.textItems = ko.observableArray();
-  self.protocolItems = ko.observableArray();
+
+  self.textEdit = new EditModel(self, "texts", "#dialogTextEdit", function()
+  {
+    self.textItems.update();
+  });
+
+  self.textEdit.addVar("name");
+  self.textEdit.addVar("text");
+
+
+  self.textItems = new ItemsModel(self, {}, "texts", sortName);
+
+  self.textItems.update();
+
+
+  self.protocolEdit = new EditModel(self, "protocols", "#dialogProtocolEdit", function()
+  {
+    self.protocolItems.update();
+  });
+
+  self.protocolEdit.addVar("date");
+  self.protocolEdit.addVar("text");
+
+
+  self.protocolItems = new ItemsModel(self, {}, "protocols", sortDate);
+
+  self.protocolItems.update();
 
 
   self.text = ko.computed(function()
   {
     if (self.type() === "text")
     {
-      return self.textItems().length > self.index() ? self.textItems()[self.index()].text : "";
+      return self.textItems.items().length > self.index() ? self.textItems.items()[self.index()] : false;
     }
     else if (self.type() === "protocol")
     {
-      return self.protocolItems().length > self.index() ? self.protocolItems()[self.index()].text : "";
+      return self.protocolItems.items().length > self.index() ? self.protocolItems.items()[self.index()] : false;
     }
 
-    return "";
+    return false;
   });
-
-  /* TODO: Temporary information */
-  var item = {};
-
-  item.title = "Om oss";
-  item.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.1";
-
-  self.textItems.push(item);
-
-  var item = {};
-
-  item.title = "Stadgar";
-  item.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.2";
-
-  self.textItems.push(item);
-
-
-  var item = {};
-
-  item.timestamp = new Date().getTime();
-  item.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.3";
-
-  self.protocolItems.push(item);
-
-  var item = {};
-
-  item.timestamp = new Date().getTime();
-  item.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.4";
-
-  self.protocolItems.push(item);
-
 };

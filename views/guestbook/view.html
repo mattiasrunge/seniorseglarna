@@ -1,0 +1,46 @@
+
+<div class="row-fluid">
+  <div class="span8" style="padding-bottom: 20px;">
+
+    <div class="alert alert-error" data-bind="visible: guestbookModel.error">
+      <strong>Fel!</strong>
+      Misslyckades med att ladda gästboken!
+    </div>
+
+    <div data-bind="template: { name: 'loadingTemplate', if: guestbookModel.entryItems.loading, data: 'inlägg' }"></div>
+
+    <div data-bind="foreach: guestbookModel.entryItems.items">
+      <div style="margin-top: 20px;">
+        <h4>
+          <span data-bind="text: $data.name"></span> skrev...
+          <span data-bind="visible: $parent.profileModel.isAdmin">
+            &nbsp;
+            <a href="#" data-bind="click: $parent.guestbookModel.entryEdit.remove" title="Ta bort inlägg" style="text-decoration: none;"><i class="icon-trash"></i></a>
+          </span>
+        </h4>
+        <p data-bind="text: $data.text"></p>
+        <div class="muted" style="font-size: 12px;"><i> &mdash; Postat <span data-bind="htmlTimestampAgo: $data.timestamp"></span></i></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="span4">
+
+    <h4>Skriv inlägg</h4>
+
+    <form data-bind="submit: guestbookModel.entryEdit.save">
+      <div style="margin-right: 14px;">
+        <input type="text" placeholder="Skriv ditt namn..." style="width: 100%;" data-bind="value: guestbookModel.entryEdit.vars['name'], disable: guestbookModel.entryEdit.loading">
+        <textarea placeholder="Skriv ett inlägg..." style="width: 100%; height: 200px;" data-bind="value: guestbookModel.entryEdit.vars['text'], disable: guestbookModel.entryEdit.loading"></textarea>
+      </div>
+
+      <input type="submit" value="Posta" style="width: 100%;" class="btn btn-primary" data-bind="disable: guestbookModel.entryEdit.loading">
+    </form>
+
+    <div class="alert alert-error" data-bind="visible: guestbookModel.editError">
+      <strong>Fel!</strong>
+      Misslyckades med att post inlägg!
+    </div>
+
+  </div>
+</div>

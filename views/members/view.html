@@ -1,0 +1,38 @@
+
+<div class="row-fluid">
+  <div class="span3">
+    <ul class="nav nav-pills nav-stacked">
+      <li class="nav-header">
+        Medlemmar
+        <span class="pull-right" data-bind="visible: profileModel.isAdmin">
+          <a href="#" data-bind="click: membersModel.memberEdit.open" title="Skapa ny medlem" style="text-decoration: none; text-transform: none;"><i class="icon-file"></i> Skapa ny</a>
+        </span>
+      </li>
+
+        <div class="alert alert-error" data-bind="visible: membersModel.memberItems.error">
+          <strong>Fel!</strong>
+          Misslyckades med att ladda medlemmar!
+        </div>
+
+        <div data-bind="template: { name: 'loadingTemplate', if: membersModel.memberItems.loading, data: 'medlemmar' }"></div>
+
+
+      <!-- ko foreach: membersModel.memberItems.items -->
+        <li data-bind="css: { active: $parent.membersModel.index() === $index() }">
+          <a href="#" data-bind="attr: { href: '#members:' + $index() }">
+            <span class="pull-right" data-bind="visible: $parent.profileModel.isAdmin">
+              &nbsp;
+              <span data-bind="click: $parent.membersModel.memberEdit.open" title="Ändra medlem" style="text-decoration: none;"><i class="icon-pencil"></i></span>
+              <span data-bind="click: $parent.membersModel.memberEdit.remove" title="Ta bort medlem" style="text-decoration: none;"><i class="icon-trash"></i></span>
+            </span>
+            <span data-bind="text: $data.name"></span>
+          </a>
+        </li>
+      <!-- /ko -->
+
+    </ul>
+  </div>
+
+  <div class="span9">
+   </div>
+</div>
