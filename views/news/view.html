@@ -44,7 +44,7 @@
       </div>
 
       <div data-bind="foreach: newsModel.programItems.items, visible: !newsModel.programItems.loading() && newsModel.programItems.items().length > 0">
-        <div style="margin-top: 30px;">
+        <div style="margin-top: 30px;" data-bind="style: { color: dateInPast($data.date) ? '#ddd' : 'auto' }">
           <div style="border-bottom: 1px solid #ddd; margin-bottom: 10px; color: gray;" class="clearfix">
             <div class="pull-right" data-bind="htmlTimestampDate: $data.date"></div>
             <div data-bind="visible: $parent.profileModel.isAdmin">

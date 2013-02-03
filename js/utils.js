@@ -77,3 +77,11 @@ function sortName(a, b)
 
   return 0;
 }
+
+function dateInPast(date)
+{
+  var aDate = new Date(date);
+  var bDate = new Date();
+
+  return aDate.getTime() < bDate.getTime();
+}

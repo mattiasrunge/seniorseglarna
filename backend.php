@@ -1,8 +1,6 @@
-<?
+<?php
 
-session_name("www_seniorseglarna_se");
-session_start();
-
+require_once("start.php");
 require_once("config.php");
 require_once("actions.php");
 

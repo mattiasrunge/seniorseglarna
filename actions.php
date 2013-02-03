@@ -1,4 +1,4 @@
-<?
+<?php
 
 require_once("config.php");
 require_once("helpers.php");
@@ -61,7 +61,7 @@ function Action_CheckAccess($action, $collection)
   {
     return true;
   }
-  if ($access[$collection][$type] === "write" && $action === "write")
+  if ($access[$collection][$type] === "write" && ($action === "write" || $action === "read"))
   {
     return true;
   }

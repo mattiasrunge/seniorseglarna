@@ -7,13 +7,138 @@
   </div>
   <div class="modal-body">
 
-    <div style="margin-right: 10px;">
-      <input placeholder="Skriv ett namn..." type="text" style="width: 100%; margin-bottom: 20px;" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['name']"/>
+    <div class="form-horizontal">
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditName">Namn</label>
+        <div class="controls">
+          <input id="dialogMemberEditName" placeholder="Skriv ett namn..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['name']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditStreet">Gatuadress</label>
+        <div class="controls">
+          <input id="dialogMemberEditStreet" placeholder="Skriv en gatuadress..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['street']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditAddress">Postadress</label>
+        <div class="controls">
+          <input id="dialogMemberEditAddress" placeholder="Skriv en postadress..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['address']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditHomephone">Hemtelefon</label>
+        <div class="controls">
+          <input id="dialogMemberEditHomephone" placeholder="Skriv ett hemtelefonnummer..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['homephone']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditMobilephone">Mobiltelefon</label>
+        <div class="controls">
+          <input id="dialogMemberEditMobilephone" placeholder="Skriv ett mobiltelefonnummer..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['mobilephone']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditEmail">E-Post</label>
+        <div class="controls">
+          <input id="dialogMemberEditEmail" placeholder="Skriv en e-postadress..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['email']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditAssignments">Uppdrag</label>
+        <div class="controls">
+          <input id="dialogMemberEditAssignments" placeholder="Skriv uppdrag..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['assignments']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditJoined">Gick&nbsp;med</label>
+        <div class="controls">
+          <input id="dialogMemberEditJoined" placeholder="Skriv ett år..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['joined']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditReferer">Kontakt&nbsp;via</label>
+        <div class="controls">
+          <input id="dialogMemberEditReferer" placeholder="Skriv ett namn..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['referer']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditBoattype">Båttyp</label>
+        <div class="controls">
+          <input id="dialogMemberEditBoattype" placeholder="Skriv en båttyp..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['boattype']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditBoatname">Båtnamn</label>
+        <div class="controls">
+          <input id="dialogMemberEditBoatname" placeholder="Skriv ett båtnamn..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['boatname']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditSailnumber">Segelnummer</label>
+        <div class="controls">
+          <input id="dialogMemberEditSailnumber" placeholder="Skriv ett nummer..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['sailnumber']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditVhf">VHF</label>
+        <div class="controls">
+          <input id="dialogMemberEditVhf" placeholder="Skriv en VHF-kod..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['vhf']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditHarbor">Hemmahamn</label>
+        <div class="controls">
+          <input id="dialogMemberEditHarbor" placeholder="Skriv en hamn..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['harbor']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditUsername">Användarnamn</label>
+        <div class="controls">
+          <input id="dialogMemberEditUsername" placeholder="Skriv ett användarnamn..." type="text" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['username']"/>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditAdmin">Administratör</label>
+        <div class="controls">
+          <select id="dialogMemberEditAdmin" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['admin']">
+            <option value="0">Inte administratör</option>
+            <option value="1">Administratör</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="dialogMemberEditHidden">Dold</label>
+        <div class="controls">
+          <select id="dialogMemberEditHidden" data-bind="disable: membersModel.memberEdit.loading, value: membersModel.memberEdit.vars['hidden']">
+            <option value="0">Vanlig medlem</option>
+            <option value="1">Dold person / ej medlem</option>
+          </select>
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="modal-footer">
     <p class="pull-left text-error" data-bind="visible: membersModel.memberEdit.error">Misslyckades med att spara medlemmen</p>
-    <a href="#" class="btn" data-dismiss="modal" data-bind="disable: membersModel.memberEdit.loading" data-dismiss="modal">Avbryt</a>
+    <a href="#" class="btn" data-bind="disable: membersModel.memberEdit.loading" data-dismiss="modal">Avbryt</a>
     <a href="#" class="btn btn-primary" data-bind="disable: membersModel.memberEdit.loading, click: membersModel.memberEdit.save">Spara</a>
   </div>
 </div>

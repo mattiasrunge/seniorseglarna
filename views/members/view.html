@@ -34,5 +34,79 @@
   </div>
 
   <div class="span9">
-   </div>
+    <h2 data-bind="text: membersModel.member().name"></h2>
+
+    <div class="row-fluid" data-bind="if: membersModel.member() !== false">
+      <div class="span6">
+
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <td>Gatuadress</td>
+              <td data-bind="text: membersModel.member().street"></td>
+            </tr>
+            <tr>
+              <td>Postadress</td>
+              <td data-bind="text: membersModel.member().address"></td>
+            </tr>
+            <tr>
+              <td>Hemtelefon</td>
+              <td data-bind="text: membersModel.member().homephone"></td>
+            </tr>
+            <tr>
+              <td>Mobiltelefon</td>
+              <td data-bind="text: membersModel.member().mobilephone"></td>
+            </tr>
+            <tr>
+              <td>E-Post</td>
+              <td data-bind="text: membersModel.member().email"></td>
+            </tr>
+            <tr>
+              <td>Uppdrag</td>
+              <td data-bind="text: membersModel.member().assignments"></td>
+            </tr>
+            <tr>
+              <td>Gick&nbsp;med</td>
+              <td data-bind="text: membersModel.member().joined"></td>
+            </tr>
+            <tr>
+              <td>Kontakt&nbsp;via</td>
+              <td data-bind="text: membersModel.member().referer"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Båt information</h3>
+
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <td>Båttyp</td>
+              <td data-bind="text: membersModel.member().boattype"></td>
+            </tr>
+            <tr>
+              <td>Båtnamn</td>
+              <td data-bind="text: membersModel.member().boatname"></td>
+            </tr>
+            <tr>
+              <td>Segelnummer</td>
+              <td data-bind="text: membersModel.member().boattype"></td>
+            </tr>
+            <tr>
+              <td>VHF</td>
+              <td data-bind="text: membersModel.member().vhf"></td>
+            </tr>
+            <tr>
+              <td>Hemmahamn</td>
+              <td data-bind="text: membersModel.member().harbor"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="span6">
+        <img class="thumbnail" style="width: 338px;" src="" data-bind="attr: { src: 'members/' + membersModel.member()._id + '.jpg' }">
+      </div>
+    </div>
+  </div>
 </div>

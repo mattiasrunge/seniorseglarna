@@ -1,4 +1,4 @@
-<?
+<?php
 
 $gFilePaths = "./files/";
 $gPreviewPaths = "./cache/";

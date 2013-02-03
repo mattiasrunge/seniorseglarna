@@ -1,4 +1,4 @@
-<?
+<?php
 
 function Helper_RunQuery($query)
 {

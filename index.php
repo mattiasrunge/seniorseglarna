@@ -1,3 +1,4 @@
+<?php require_once("start.php"); ?>
 <!DOCTYPE html>
 <html lang="sv">
   <head>
@@ -32,10 +33,10 @@
       </div>
     </script>
 
-    <? include("./views/news/dialogs.html"); ?>
-    <? include("./views/about/dialogs.html"); ?>
-    <? include("./views/forum/dialogs.html"); ?>
-    <? include("./views/members/dialogs.html"); ?>
+    <?php include("./views/news/dialogs.html"); ?>
+    <?php include("./views/about/dialogs.html"); ?>
+    <?php include("./views/forum/dialogs.html"); ?>
+    <?php include("./views/members/dialogs.html"); ?>
 
     <div class="center-container">
 
@@ -44,7 +45,7 @@
       <div class="main-container">
         <div class="pull-right" style="padding-right: 15px;">
           <div class="nav-header" style="padding-right: 0px; text-align: right;">Kontakt</div>
-          <a href="mailto:">info@seniorseglarna.se</a>
+          <a href="mailto:info@seniorseglarna.se">info@seniorseglarna.se</a>
         </div>
 
         <img class="pull-left main-logo" alt="" src="img/logo.png"/>
@@ -55,8 +56,6 @@
             <small><i>En förening för seglingsintresserade</i></small>
           </h1>
         </div>
-
-        <!--<img class="thumbnail pull-right" alt="" src="img/fortissimo_small.jpg" style="height: 80px;">-->
 
         <div class="tabbable">
           <ul class="nav nav-tabs">
@@ -72,10 +71,10 @@
             <li data-bind="css: { active: forumModel.show }">
               <a href="#forum">Forum</a>
             </li>
-            <li data-bind="css: { active: galleryModel.show }">
+            <li data-bind="css: { active: galleryModel.show }" style="display: none;">
               <a href="#gallery">Galleri</a>
             </li>
-            <li data-bind="css: { active: storiesModel.show }">
+            <li data-bind="css: { active: storiesModel.show }" style="display: none;">
               <a href="#stories">Logböcker</a>
             </li>
 
@@ -92,28 +91,28 @@
 
           <div class="tab-content">
             <div class="tab-pane" data-bind="css: { active: newsModel.show }">
-              <? include("./views/news/view.html"); ?>
+              <?php include("./views/news/view.html"); ?>
             </div>
             <div class="tab-pane" data-bind="css: { active: aboutModel.show }">
-              <? include("./views/about/view.html"); ?>
+              <?php include("./views/about/view.html"); ?>
             </div>
             <div class="tab-pane" data-bind="css: { active: guestbookModel.show }">
-              <? include("./views/guestbook/view.html"); ?>
+              <?php include("./views/guestbook/view.html"); ?>
             </div>
             <div class="tab-pane" data-bind="css: { active: forumModel.show }">
-              <? include("./views/forum/view.html"); ?>
+              <?php include("./views/forum/view.html"); ?>
             </div>
-            <div class="tab-pane" data-bind="css: { active: galleryModel.show }">
-              <? include("./views/gallery/view.html"); ?>
+            <div class="tab-pane" data-bind="css: { active: galleryModel.show }" style="display: none;">
+              <?php include("./views/gallery/view.html"); ?>
             </div>
-            <div class="tab-pane" data-bind="css: { active: storiesModel.show }">
-              <? include("./views/stories/view.html"); ?>
+            <div class="tab-pane" data-bind="css: { active: storiesModel.show }" style="display: none;">
+              <?php include("./views/stories/view.html"); ?>
             </div>
             <div class="tab-pane" data-bind="css: { active: membersModel.show }">
-              <? include("./views/members/view.html"); ?>
+              <?php include("./views/members/view.html"); ?>
             </div>
             <div class="tab-pane" data-bind="css: { active: profileModel.show }">
-              <? include("./views/profile/view.html"); ?>
+              <?php include("./views/profile/view.html"); ?>
             </div>
           </div>
 
@@ -130,7 +129,7 @@
     <script src="js/moment.min.js"></script>
     <script src="js/jquery.history.min.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
-    <script src="js/wysihtml5-0.3.0.js"></script>
+    <script src="js/wysihtml5-0.3.0.min.js"></script>
     <script src="js/bootstrap-wysihtml5-0.0.2.min.js"></script>
     <script src="js/jquery.anystretch.min.js"></script>
     <script src="js/utils.js"></script>
@@ -202,8 +201,6 @@
           }
         });
 
-        $.anystretch("img/background.jpg", {speed: 300});
-
         ko.applyBindings(mainModel);
 
         jQuery.History.bind(function(state)
@@ -215,6 +212,13 @@
         {
           jQuery.History.trigger("");
         }
+
+        $.anystretch("img/background2.jpg", {speed: 300});
+
+        setInterval(function()
+        {
+          server.emit("echo", {}, function() { });
+        }, 60 * 1000);
       });
 
     </script>
