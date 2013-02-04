@@ -38,7 +38,7 @@ try
     }
     case "logout":
     {
-      unset($_SESSION['user']);
+      unset($GLOBALS["session"]['user']);
       break;
     }
     case "login":
@@ -57,18 +57,18 @@ try
         break;
       }
 
-      $_SESSION['user'] = $user;
+      $GLOBALS["session"]['user'] = $user;
       $response['data'] = $user;
       break;
     }
     case "getUser":
     {
-      $response['data'] = $_SESSION['user'];
+      $response['data'] = $GLOBALS["session"]['user'];
       break;
     }
     case "getMembers":
     {
-      if (isset($_SESSION['user']))
+      if (isset($GLOBALS["session"]['user']))
       {
         $response['data'] = Action_GetMembers();
       }

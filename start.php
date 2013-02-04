@@ -1,9 +1,10 @@
 <?php
 
-// ini_set('session.gc_maxlifetime', '3600000');
-// ini_set('session.cookie_lifetime', '3600000');
+require_once("config.php");
+require_once("msession.php");
 
-session_name("www_seniorseglarna_se");
-session_start();
+msession_name($sessionName);
+msession_path($sessionPath);
+msession_start();
 
 ?>
