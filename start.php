@@ -1,10 +1,10 @@
 <?php
 
 require_once("config.php");
-require_once("msession.php");
+//require_once("msession.php");
 
-msession_name($sessionName);
-msession_path($sessionPath);
-msession_start();
+session_name($sessionName);
+//session_save_path(realpath($sessionPath));
+session_start();
 
 ?>

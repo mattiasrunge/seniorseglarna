@@ -215,10 +215,10 @@
 
         $.anystretch("img/background2.jpg", {speed: 300});
 
-        setInterval(function()
+        /*setInterval(function()
         {
           server.emit("echo", {}, function() { });
-        }, 60 * 1000);
+          }, 60 * 1000);*/
       });
 
     </script>

@@ -2,20 +2,26 @@
 <div class="row-fluid">
   <div class="span3">
 
+    <div data-bind="template: { name: 'loadingTemplate', if: forumModel.categoryEdit.loading, data: 'texter' }"></div>
+
     <ul class="nav nav-pills nav-stacked">
       <li class="nav-header">
         Kategorier
-        <span class="pull-right" data-bind="visible: profileModel.isAdmin">
-          <a href="#" data-bind="click: forumModel.categoryEdit.open" title="Skapa kategori" style="text-decoration: none; text-transform: none;"><i class="icon-file"></i> Skapa ny</a>
-        </span>
       </li>
 
-      <div class="alert alert-error" data-bind="visible: forumModel.categoryEdit.error">
-        <strong>Fel!</strong>
-        Misslyckades med att ladda texter!
-      </div>
+      <li>
 
-      <div data-bind="template: { name: 'loadingTemplate', if: forumModel.categoryEdit.loading, data: 'texter' }"></div>
+        <div class="input-append" data-bind="visible: profileModel.isAdmin">
+          <input style="width: 138px;" placeholder="Ny kategori..." type="text" data-bind="value: forumModel.categoryEdit.vars['name'], disable: forumModel.categoryEdit.loading">
+          <button class="btn btn-primary" type="button" style="width: 70px;" data-bind="click: forumModel.categoryEdit.save, disable: forumModel.categoryEdit.loading">Skapa</button>
+        </div>
+
+        <div class="alert alert-error" data-bind="visible: forumModel.categoryEdit.error">
+          <strong>Fel!</strong>
+          Misslyckades med att skapa kategorin!
+        </div>
+
+      </li>
 
       <!-- ko foreach: forumModel.categoryItems.items -->
         <li data-bind="css: { active: $parent.forumModel.categoryIndex() === $index() }">
@@ -34,89 +40,94 @@
 
   </div>
 
-  <div class="span9" style="padding-bottom: 20px;">
+  <div class="span3">
 
-    <div data-bind="visible: forumModel.threadIndex() === false">
-
-      <div class="clearfix" style="margin-bottom: 20px;">
-        <a class="btn btn-primary pull-right" href="#" data-bind="visible: profileModel.user() !== false, click: forumModel.threadEdit.open" title="Starta en ny tråd" style="text-decoration: none;"><i class="icon-plus"></i> Starta en ny tråd</a>
-      </div>
-
-      <div class="alert alert-error" data-bind="visible: forumModel.threadItems.error">
-        <strong>Fel!</strong>
-        Misslyckades med att ladda trådar!
-      </div>
-
-      <div data-bind="template: { name: 'loadingTemplate', if: forumModel.threadItems.loading, data: 'trådar' }"></div>
-
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>Ämne</th>
-            <th>Författare</th>
-            <th>Senaste&nbsp;uppdaterad</th>
-            <th>Antal&nbsp;inlägg</th>
-          </tr>
-        </thead>
-        <tbody data-bind="foreach: forumModel.threadItems.items">
-          <tr style="cursor: pointer;" data-bind="click: function() { document.location.hash = '#forum:' + $parent.forumModel.categoryIndex() + ':' + $index(); }">
-            <td>
-              <span data-bind="text: $data.name"></span>
-              <span data-bind="visible: $parent.profileModel.isAdmin">
-                &nbsp;
-                <a href="#" data-bind="click: $parent.forumModel.threadEdit.remove" title="Ta bort inlägg" style="text-decoration: none;"><i class="icon-trash"></i></a>
-              </span>
-            </td>
-            <td data-bind="textWhoName: $data._who"></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-
-    <!-- <div class="pagination pagination-centered">
-        <ul>
-          <li><a href="#">Föregående</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">Nästa</a></li>
-        </ul>
-      </div>-->
+    <div class="alert alert-error" data-bind="visible: forumModel.threadItems.error">
+      <strong>Fel!</strong>
+      Misslyckades med att ladda diskussioner!
     </div>
 
-    <div data-bind="visible: forumModel.threadIndex() !== false">
+    <div data-bind="template: { name: 'loadingTemplate', if: forumModel.threadItems.loading, data: 'diskussioner' }"></div>
 
-      <div class="clearfix" style="margin-bottom: 20px;">
-        <a class="btn pull-left" href="#" data-bind="attr: { href: '#forum:' + forumModel.categoryIndex() }" title="Tillbaka" style="text-decoration: none;"><i class="icon-chevron-left"></i> Tillbaka</a>
+    <ul class="nav nav-pills nav-stacked">
+      <li class="nav-header">
+        Diskussioner
+      </li>
 
-        <a class="btn btn-primary pull-right" href="#" data-bind="visible: profileModel.user() !== false, click: forumModel.entryEdit.open" title="Skriv ett inlägg" style="text-decoration: none;"><i class="icon-plus"></i> Skriv ett inlägg</a>
-      </div>
+      <li>
 
-      <div class="alert alert-error" data-bind="visible: forumModel.entryItems.error">
-        <strong>Fel!</strong>
-        Misslyckades med att ladda gästboken!
-      </div>
+        <div class="input-append" data-bind="visible: profileModel.user() !== false">
+          <input style="width: 138px;" placeholder="Ny diskussion..." type="text" data-bind="value: forumModel.threadEdit.vars['name'], disable: forumModel.threadEdit.loading">
+          <button class="btn btn-primary" type="button" style="width: 70px;" data-bind="click: forumModel.threadEdit.save, disable: forumModel.threadEdit.loading">Skapa</button>
+        </div>
 
-      <div data-bind="template: { name: 'loadingTemplate', if: forumModel.entryItems.loading, data: 'inlägg' }"></div>
+         <div class="alert alert-error" data-bind="visible: forumModel.threadEdit.error">
+          <strong>Fel!</strong>
+          Misslyckades med att starta diskussion!
+        </div>
+
+      </li>
+
+      <!-- ko foreach: forumModel.threadItems.items -->
+        <li data-bind="css: { active: $parent.forumModel.threadIndex() === $index() }">
+          <a href="#" data-bind="attr: { href: '#forum:' + $parent.forumModel.categoryIndex() + ':' + $index() }">
+            <span class="pull-right" data-bind="visible: $parent.profileModel.isAdmin">
+              &nbsp;
+              <span data-bind="click: $parent.forumModel.threadEdit.open" title="Ändra diskussion" style="text-decoration: none;"><i class="icon-pencil"></i></span>
+              <span data-bind="click: $parent.forumModel.threadEdit.remove" title="Ta bort diskussion" style="text-decoration: none;"><i class="icon-trash"></i></span>
+            </span>
+            <span data-bind="text: $data.name"></span>
+          </a>
+        </li>
+      <!-- /ko -->
+    </ul>
+
+  </div>
+
+  <div class="span6" style="padding-bottom: 20px;" data-bind="if: forumModel.thread() !== false">
+
+    <div class="alert alert-error" data-bind="visible: forumModel.entryItems.error">
+      <strong>Fel!</strong>
+      Misslyckades med att ladda tråden!
+    </div>
+
+    <div data-bind="template: { name: 'loadingTemplate', if: forumModel.entryItems.loading, data: 'inlägg' }"></div>
+
+    <div class="well" style="background-color: white; margin-bottom: 0px;">
+      <h4>
+        <span data-bind="textWhoName: forumModel.thread()._who"></span> startade diskussionen om <span data-bind="text: forumModel.thread().name"></span>...
+      </h4>
 
       <div data-bind="foreach: forumModel.entryItems.items">
-        <div style="margin-top: 20px;">
-          <h4>
+        <div style="margin-top: 20px; border-top: 1px solid #ddd;">
+          <h5 style="margin-bottom: 0px;">
             <span data-bind="textWhoName: $data._who"></span> skrev...
             <span data-bind="visible: $parent.profileModel.isAdmin">
               &nbsp;
               <a href="#" data-bind="click: $parent.forumModel.entryEdit.remove" title="Ta bort inlägg" style="text-decoration: none;"><i class="icon-trash"></i></a>
             </span>
-          </h4>
+          </h5>
+          <div class="muted" style="font-size: 11px; margin-bottom: 10px;"><i> &mdash; <span data-bind="htmlTimestampAgo: $data.timestamp"></span></i></div>
           <p data-bind="text: $data.text"></p>
-          <div class="muted" style="font-size: 12px;"><i> &mdash; Postat <span data-bind="htmlTimestampAgo: $data.timestamp"></span></i></div>
         </div>
       </div>
 
     </div>
 
+    <div class="well" style="background-color: white; margin-bottom: 0px; margin-top: 20px;" data-bind="visible: profileModel.user() !== false">
+      <form data-bind="submit: forumModel.entryEdit.save" style="margin-bottom: 0px;">
+        <div style="margin-right: 14px;">
+          <textarea placeholder="Skriv ett inlägg..." style="width: 100%; height: 200px;" data-bind="value: forumModel.entryEdit.vars['text'], disable: forumModel.entryEdit.loading"></textarea>
+        </div>
+
+        <input type="submit" value="Posta" style="width: 100%;" class="btn btn-primary" data-bind="disable: forumModel.entryEdit.loading">
+
+        <div class="alert alert-error" data-bind="visible: forumModel.entryEdit.error" style="margin-bottom: 0px; margin-top: 20px;">
+          <strong>Fel!</strong>
+          Misslyckades med att post inlägg!
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 

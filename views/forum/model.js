@@ -15,7 +15,7 @@ function ForumModel(parentModel)
 
   self.threadIndex = ko.computed(function()
   {
-    return parentModel.args().length > 2 ? intval(parentModel.args()[2]) : false;
+    return parentModel.args().length > 2 ? intval(parentModel.args()[2]) : 0;
   });
 
 
@@ -40,12 +40,11 @@ function ForumModel(parentModel)
 
 
   self.threadEdit = new EditModel(self, "forumThreads", "#dialogForumThreadEdit", function()
-  {
+  {console.log("b", self.category());
     self.threadItems.update({ _category: self.category() });
   });
 
   self.threadEdit.addVar("name");
-  self.threadEdit.addVar("text");
   self.threadEdit.addVar("_category", true);
 
 
@@ -54,14 +53,14 @@ function ForumModel(parentModel)
 
   self.thread = ko.computed(function()
   {
-    return self.threadItems.items()[self.threadIndex()] ? self.threadItems.items()[self.threadIndex()]._id : "0";
+    return self.threadItems.items()[self.threadIndex()] ? self.threadItems.items()[self.threadIndex()] : false;
   });
 
 
   self.category.subscribe(function(value)
   {
     self.threadEdit.vars._category(value);
-
+console.log("a", value);
     self.threadItems.update({ _category: value });
   });
 
@@ -70,7 +69,10 @@ function ForumModel(parentModel)
 
   self.entryEdit = new EditModel(self, "forumEntries", "#dialogForumEntryEdit", function()
   {
-    self.entryItems.update({ _thread: self.thread() });
+    if (self.thread() !== false)
+    {
+      self.entryItems.update({ _thread: self.thread()._id });
+    }
   });
 
   self.entryEdit.addVar("text");
@@ -83,9 +85,12 @@ function ForumModel(parentModel)
 
   self.thread.subscribe(function(value)
   {
-    self.entryEdit.vars._thread(value);
+    if (value !== false)
+    {
+      self.entryEdit.vars._thread(value._id);
 
-    self.entryItems.update({ _thread: value });
+      self.entryItems.update({ _thread: value._id });
+    }
   });
 
 };

@@ -47,11 +47,11 @@ function Action_CheckAccess($action, $collection)
 
   $type = "all";
 
-  if (isset($GLOBALS["session"]["user"]))
+  if (isset($_SESSION["user"]))
   {
     $type = "user";
 
-    if ($GLOBALS["session"]["user"]["admin"])
+    if (!empty($_SESSION["user"]["admin"]))
     {
       $type = "admin";
     }
@@ -89,7 +89,7 @@ function Action_Save($item, $collection)
     $set = array();
 
     $item["timestamp"] = mktime();
-    $item["_who"] = isset($GLOBALS["session"]["user"]) ? $GLOBALS["session"]["user"]["_id"] : 0;
+    $item["_who"] = isset($_SESSION["user"]) ? $_SESSION["user"]["_id"] : 0;
 
     foreach ($item as $key => $value)
     {
@@ -114,7 +114,7 @@ function Action_Save($item, $collection)
   $values = array();
 
   $item["timestamp"] = mktime();
-  $item["_who"] = isset($GLOBALS["session"]["user"]) ? $GLOBALS["session"]["user"]["_id"] : 0;
+  $item["_who"] = isset($_SESSION["user"]) ? $_SESSION["user"]["_id"] : 0;
 
   foreach ($item as $key => $value)
   {

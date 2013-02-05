@@ -38,7 +38,7 @@ try
     }
     case "logout":
     {
-      unset($GLOBALS["session"]['user']);
+      unset($_SESSION['user']);
       break;
     }
     case "login":
@@ -57,18 +57,18 @@ try
         break;
       }
 
-      $GLOBALS["session"]['user'] = $user;
+      $_SESSION['user'] = $user;
       $response['data'] = $user;
       break;
     }
     case "getUser":
     {
-      $response['data'] = $GLOBALS["session"]['user'];
+      $response['data'] = $_SESSION['user'];
       break;
     }
     case "getMembers":
     {
-      if (isset($GLOBALS["session"]['user']))
+      if (isset($_SESSION['user']))
       {
         $response['data'] = Action_GetMembers();
       }
@@ -89,6 +89,8 @@ catch (Exception $e)
 {
   $response['error'] = $e->getMessage();
 }
+
+$response["session"] = $_SESSION;
 
 echo json_encode($response);
 
