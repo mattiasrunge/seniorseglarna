@@ -37,6 +37,7 @@
     <?php include("./views/about/dialogs.html"); ?>
     <?php include("./views/forum/dialogs.html"); ?>
     <?php include("./views/members/dialogs.html"); ?>
+    <?php include("./views/profile/dialogs.html"); ?>
 
     <div class="center-container">
 

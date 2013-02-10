@@ -61,6 +61,17 @@ try
       $response['data'] = $user;
       break;
     }
+    case "changePassword":
+    {
+      if (empty($args['password']))
+      {
+        $response['error'] = "Password is empty, change failed!";
+        break;
+      }
+
+      Action_SetPassword($_SESSION['user'], $args['password']);
+      break;
+    }
     case "getUser":
     {
       $response['data'] = $_SESSION['user'];

@@ -8,6 +8,18 @@ function ProfileModel(parentModel)
     return parentModel.args().length > 0 && parentModel.args()[0] === "profile";
   });
 
+  self.show.subscribe(function(value)
+  {
+    if (value)
+    {
+      setTimeout(function()
+      {
+        console.log("focus username");
+        $("#inputUsername").focus();
+      }, 100);
+    }
+  });
+
   self.user = ko.observable(false);
   self.disabled = ko.observable(false);
   self.error = ko.observable(null);
@@ -85,6 +97,53 @@ function ProfileModel(parentModel)
       self.user(user);
       self.inputUsername("");
       self.inputPassword("");
+    });
+  };
+
+
+
+
+  self.passwordEditLoading = ko.observable(false);
+  self.passwordEditPassword1 = ko.observable("");
+  self.passwordEditPassword2 = ko.observable("");
+  self.passwordEditError = ko.observable(null);
+
+  self.passwordEditSave = function()
+  {
+    self.passwordEditError("");
+    self.passwordEditLoading(false);
+
+    if (self.passwordEditPassword1() !== self.passwordEditPassword2())
+    {
+      console.log("Passwords does not match!");
+      self.passwordEditError("Passwords does not match!");
+      return;
+    }
+
+    if (self.passwordEditPassword1() === "")
+    {
+      console.log("Passwords can not be empty!");
+      self.passwordEditError("Passwords can not be empty!");
+      return;
+    }
+
+    self.passwordEditLoading(true);
+
+    server.emit("changePassword", { password: self.passwordEditPassword1() }, function(error)
+    {
+      self.passwordEditLoading(false);
+
+      if (error)
+      {
+        console.log(error);
+        self.passwordEditError(error);
+        return;
+      }
+
+      self.passwordEditPassword1("");
+      self.passwordEditPassword2("");
+
+      $("#dialogProfilePasswordEdit").modal("hide");
     });
   };
 };

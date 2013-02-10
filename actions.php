@@ -73,6 +73,23 @@ function Action_CheckAccess($action, $collection)
   return false;
 }
 
+function Action_SetPassword($user, $password)
+{
+  if (!isset($_SESSION["user"]))
+  {
+    throw new Exception("No logged in user, password change failed");
+  }
+
+  if ($_SESSION["user"]["_id"] !== $user["_id"] && !empty($_SESSION["user"]["admin"]))
+  {
+    throw new Exception("Only administrator can set password on user other than the user itself");
+  }
+
+  $sqlQuery = "UPDATE `members` SET `password` = SHA1('" . $password . "') WHERE `_id` = " . $user["_id"];
+
+  Helper_RunQuery($sqlQuery);
+}
+
 function Action_Save($item, $collection)
 {
   global $gDatabase;
