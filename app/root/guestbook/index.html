@@ -1,0 +1,36 @@
+﻿<div>
+  <div class="content-panel">
+    <h4 class="title">Skriv inlägg</h4>
+
+    <form data-bind="submit: submit">
+      <div class="form-group">
+        <input class="form-control" type="text" placeholder="Skriv ditt namn..." style="width: 100%;" data-bind="value: name, disable: loading">
+      </div>
+        
+      <div class="form-group">
+        <textarea class="form-control" placeholder="Skriv ett inlägg..." style="width: 100%; height: 200px;" data-bind="value: text, disable: loading"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" data-bind="disable: loading">Posta</button>
+      </div>
+      
+      <div class="alert alert-danger" data-bind="visible: errorText() !== false, text: errorText"></div>
+      
+    </form>
+  </div>
+  <div class="content-main right scroll">
+    <div class="content-container" data-bind="foreach: list">
+      <div>
+        <div class="panel-body">
+          <h3 class="panel-title">
+            <i class="icon icon-trash pull-right" style="cursor: pointer;" data-bind="click: $parent.remove, visible: $parent.user && $parent.user() && $parent.user() !== false && $parent.user().admin"></i>
+            <span data-bind="text: $data.name"></span>
+            skrev för
+            <span data-bind="htmlTimestampAgo: $data.timestamp"></span>...
+          </h3>
+          <div data-bind="text: $data.text"></div>
+        </div>
+      </div>
+    </div>
+</div>

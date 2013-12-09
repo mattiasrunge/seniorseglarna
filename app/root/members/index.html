@@ -1,0 +1,176 @@
+﻿<div>
+  <div class="content-menu">
+    <div class="loader" data-bind="visible: loading">
+      <i class="icon-spinner icon-spin active"></i>
+      Loading...
+    </div>
+    
+    <div class="alert alert-danger" data-bind="visible: errorText() !== false, text: errorText"></div>
+    
+    <ul class="nav nav-pills nav-stacked" data-bind="visible: !loading()">
+      <li class="nav-header">Medlemmar</li>
+        <!-- ko foreach: list -->
+          <li data-bind="css: { active: $parent.current() === $data }, visible: $parent.user() && $parent.user().admin || $data.username !== 'admin'">
+            <a href="#" data-bind="text: $data.name, click: $parent.select"></a>
+          </li>
+        <!-- /ko -->
+    </ul>
+  </div>
+  <form class="content-main" data-bind="if: current() !== false, submit: submit">
+    <div class="document-title">
+      
+      <button class="btn btn-xs btn-danger pull-right" style="margin-left: 5px;" data-bind="click: remove, visible: user() && user().admin && !editing()">Ta bort</button>
+      <button class="btn btn-xs btn-primary pull-right" data-bind="click: edit, visible: (user() && user().admin) && !editing()">Ändra</button>
+      
+      <button class="btn btn-xs btn-default pull-right" style="margin-left: 5px;" data-bind="click: edit, visible: editing">Avbryt</button>
+      <button type="submit" class="btn btn-xs btn-primary pull-right" data-bind="visible: editing">Spara</button>
+      
+      <span data-bind="text: current().name"></span>
+    </div>
+    <div class="document-main scroll">
+      <div class="content-container" style="margin-top: 30px;">
+        <div class="row">
+          <div class="col-md-4">
+          
+            <h3>Information</h3>
+            
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Namn</td>
+                  <td>
+                    <span data-bind="text: current().name, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formName, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Gatuadress</td>
+                  <td>
+                    <span data-bind="text: current().street, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formStreet, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Postadress</td>
+                  <td>
+                    <span data-bind="text: current().address, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formAddress, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Hemtelefon</td>
+                  <td>
+                    <span data-bind="text: current().homephone, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formHomephone, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Mobiltelefon</td>
+                  <td>
+                    <span data-bind="text: current().mobilephone, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formMobilephone, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>E-Post</td>
+                  <td>
+                    <span data-bind="text: current().email, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formEmail, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Uppdrag</td>
+                  <td>
+                    <span data-bind="text: current().assignments, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formAssignments, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Gick&nbsp;med</td>
+                  <td>
+                    <span data-bind="text: current().joined, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formJoined, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Kontakt&nbsp;via</td>
+                  <td>
+                    <span data-bind="text: current().referer, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formReferer, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Användarnamn</td>
+                  <td>
+                    <span data-bind="text: current().username, visible: !editing() || !user() || !user().admin"></span>
+                    <input class="form-control input-sm" data-bind="value: formUsername, visible: editing() && user() && user().admin">
+                  </td>
+                </tr>
+                <tr data-bind="visible: user() && user().admin">
+                  <td>Administratör</td>
+                  <td>
+                    <span data-bind="text: current().admin ? 'Ja' : 'Nej', visible: !editing()"></span>
+                    <select class="form-control input-sm" data-bind="value: formAdmin, visible: editing">
+                      <option value="0">Nej</option>
+                      <option value="1">Ja</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+          <div class="col-md-4">
+
+            <h3>Båt</h3>
+
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Båttyp</td>
+                  <td>
+                    <span data-bind="text: current().boattype, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formBoattype, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Båtnamn</td>
+                  <td>
+                    <span data-bind="text: current().boatname, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formBoatname, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Segelnummer</td>
+                  <td>
+                    <span data-bind="text: current().sailnumber, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formSailnumber, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>VHF</td>
+                  <td>
+                    <span data-bind="text: current().vhf, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formVHF, visible: editing">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Hemmahamn</td>
+                  <td>
+                    <span data-bind="text: current().harbor, visible: !editing()"></span>
+                    <input class="form-control input-sm" data-bind="value: formHarbor, visible: editing">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="col-md-4">
+            <img style="width: 100%; border-radius: 3px;" src="" data-bind="attr: { src: 'http://www.seniorseglarna.se/members/' + current()._id + '.jpg' }">
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

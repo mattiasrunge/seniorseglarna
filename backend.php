@@ -10,7 +10,7 @@ $gDatabase->set_charset("utf8");
 $response = array();
 
 $event = $_REQUEST['event'];
-$args = $_REQUEST['args'];
+$args = $_REQUEST;
 
 try
 {
@@ -53,7 +53,7 @@ try
 
       if ($user === FALSE)
       {
-        $response['error'] = "Username and password combination was not recognized.";
+        $response['error'] = "Inloggningen misslyckades.";
         break;
       }
 
@@ -85,6 +85,17 @@ try
       }
       break;
     }
+    case "getList":
+    {
+      if (empty($args['id']))
+      {
+        $response['error'] = "Id is empty, list failed!";
+        break;
+      }
+    
+      $response['data'] = Action_GetList($args['id']);
+      break;
+    }
     case "echo":
     {
       $response['data'] = $args;
@@ -92,7 +103,7 @@ try
     }
     default:
     {
-      throw new Exception("Unknown event: " + $event);
+      throw new Exception("Unknown event: " . $event);
     }
   }
 }
@@ -101,8 +112,10 @@ catch (Exception $e)
   $response['error'] = $e->getMessage();
 }
 
-$response["session"] = $_SESSION;
+// $response["session"] = $_SESSION;
+//$response["request"] = $_REQUEST;
 
+header("Content-Type: application/json; charset=utf-8");
 echo json_encode($response);
 
 ?>

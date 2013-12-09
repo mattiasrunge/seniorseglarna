@@ -1,0 +1,17 @@
+﻿<div class="page-host">
+  <div class="page-heading clearfix">
+    <div class="pull-right" style="padding: 30px;">
+      <div style="text-align: right;">Kontakt</div>
+      <a href="mailto:info@seniorseglarna.se">info@seniorseglarna.se</a>
+    </div>
+    
+    <img class="pull-left main-logo" alt="" src="img/sseglare_logo.png" style="margin: 30px;">
+    <img class="" alt="" src="img/sseglare_title.png" style="margin-top: 45px;">
+  </div>
+  
+  <ul class="page-nav nav nav-tabs clearfix" style="padding-left: 30px; padding-right: 30px;" data-bind="foreach: router.navigationModel">
+    <li data-bind="css: { active: $data.isActive(), 'pull-right': $data.right }, visible: $data.visible"><a href="#" data-bind="attr: { href: $data.hash }, text: $data.title"></a></li>
+  </ul>
+
+  <div class="page-content" data-bind="router: { transition: 'entrance', cacheViews: false }"></div>
+</div>

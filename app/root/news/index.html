@@ -1,0 +1,50 @@
+﻿<div>
+  <div class="content-panel">
+    <h4 class="title">Program</h4>
+    
+    <div class="loader" data-bind="visible: programLoading">
+      <i class="icon-spinner icon-spin active"></i>
+      Loading...
+    </div>
+    
+    <div class="alert alert-danger" data-bind="visible: programErrorText() !== false, text: programErrorText"></div>
+
+    <div data-bind="foreach: programList">
+      <div class="program-item">
+        <div style="margin-bottom: 10px; color: #999; font-size: 32px;" class="clearfix">
+          <div class="pull-right" data-bind="text: $data.date"></div>
+        </div>
+        
+        <p style="text-align: right;" data-bind="visible: !$data.loading(), html: $data.html()"></p>
+      </div>
+    </div>
+  </div>
+  <div class="content-main right scroll">
+  
+    <div class="loader" data-bind="visible: newsLoading">
+      <i class="icon-spinner icon-spin active"></i>
+      Loading...
+    </div>
+    
+    <div class="alert alert-danger" data-bind="visible: newsErrorText() !== false, text: newsErrorText"></div>
+
+    <div class="content-container" data-bind="foreach: newsList">
+      <div>
+        <div class="panel-body">
+          <h3 class="panel-title">
+            <span data-bind="text: $data.name"></span>
+            <span class="badge pull-right" data-bind="text: $data.date"></span>
+          </h3>
+
+          <div class="loader" data-bind="visible: $data.loading">
+            <i class="icon-spinner icon-spin active"></i>
+            Loading...
+          </div>
+          
+          <div class="alert alert-danger" data-bind="visible: $data.errorText() !== false, text: $data.errorText"></div>
+          
+          <div data-bind="visible: !$data.loading(), html: $data.html"></div>
+        </div>
+      </div>
+    </div>
+</div>

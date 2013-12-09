@@ -1,0 +1,59 @@
+<div>
+  <div class="content-menu">
+    <div class="loader" data-bind="visible: loading">
+      <i class="icon-spinner icon-spin active"></i>
+      Loading...
+    </div>
+    
+    <div class="alert alert-danger" data-bind="visible: errorText() !== false, text: errorText"></div>
+    
+    <ul class="nav nav-pills nav-stacked" data-bind="foreach: subjects, visible: !loading()">
+      <li class="nav-header" data-bind="text: $data.name"></li>
+      
+        <li class="loader" data-bind="visible: $data.loading">
+          <i class="icon-spinner icon-spin active"></i>
+          Loading...
+        </li>
+      
+        <li class="alert alert-danger" data-bind="visible: $data.errorText() !== false, text: $data.errorText"></li>
+      
+        <!-- ko if: !$data.loading() -->
+          <!-- ko foreach: $data.years -->
+            <li data-bind="css: { active: $parentContext.$parentContext.$data.currentYear() === $data.year() && $parentContext.$parentContext.$data.currentSubject() == $data.subject }"><a href="#" data-bind="text: $data.year, click: $parentContext.$parentContext.$data.yearClicked"></a></li>
+          <!-- /ko -->
+          <!-- ko foreach: $data.items -->
+            <!-- ko if: !$data.year -->
+              <li data-bind="css: { active: $parentContext.$parentContext.$data.currentItem() === $data }"><a href="#" data-bind="text: $data.name, click: $parentContext.$parentContext.$data.itemClicked"></a></li>
+            <!-- /ko -->
+          <!-- /ko -->
+        <!-- /ko -->
+    </ul>
+  </div>
+  <div class="content-main scroll" data-bind="if: currentItem() === false && currentYear() !== false, visible: currentItem() === false && currentYear() !== false">
+    <div class="content-container clearfix" data-bind="foreach: currentItems">
+    
+      <div class="thumbnail document-item pull-left" data-bind="click: $parentContext.$data.itemClicked">
+        <div class="caption">
+          <span class="text-muted" data-bind="text: $data.date" style="font-size: 16px;"></span>
+          <h4 data-bind="text: $data.name"></h4>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  <div class="content-main" data-bind="if: currentItem() !== false, visible: currentItem() !== false">
+    <div class="document-title">
+      <span data-bind="text: currentItem().name"></span>
+      <span class="date" data-bind="visible: currentItem().name !== currentItem().date, text: currentItem().date"></span>
+    </div>
+    <div class="document-main">
+      <!-- ko if: currentItem().type === 'document' -->
+        <iframe data-bind="attr: { src: 'https://docs.google.com/document/d/' + currentItem().id + '/pub?embedded=true' }"></iframe>
+      <!-- /ko -->
+      <!-- ko if: currentItem().type !== 'document' -->
+        <iframe data-bind="attr: { src: 'https://docs.google.com/file/d/' + currentItem().id + '/preview' }"></iframe>
+      <!-- /ko -->
+    </div>
+    </div>
+  </div>
+</div>

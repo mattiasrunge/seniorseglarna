@@ -1,0 +1,22 @@
+﻿<div>
+  <div class="content-main center">
+    <div class="content-container" data-bind="foreach: list">
+      <div>
+        <div class="panel-body">
+          <h3 class="panel-title">
+            <span data-bind="text: $data.name"></span>
+            <span class="badge pull-right" data-bind="text: $data.date"></span>
+          </h3>
+
+          <div class="loader" data-bind="visible: $data.loading">
+            <i class="icon-spinner icon-spin active"></i>
+            Loading...
+          </div>
+          
+          <div class="alert alert-danger" data-bind="visible: $data.errorText() !== false, text: $data.errorText"></div>
+          
+          <div data-bind="visible: !$data.loading(), html: $data.html"></div>
+        </div>
+      </div>
+    </div>
+</div>
