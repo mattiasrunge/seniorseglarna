@@ -8,7 +8,7 @@ define(["durandal/app", "knockout", "server", "moment"], function(app, ko, serve
   var list = ko.observableArray();
   var current = ko.observable(false);
   var editing = ko.observable(false);
-  
+
   var formName = ko.observable("");
   var formStreet = ko.observable("");
   var formAddress = ko.observable("");
@@ -25,7 +25,7 @@ define(["durandal/app", "knockout", "server", "moment"], function(app, ko, serve
   var formHarbor = ko.observable("");
   var formUsername = ko.observable("");
   var formAdmin = ko.observable(false);
-  
+
   function load()
   {
     loading(true);
@@ -33,26 +33,26 @@ define(["durandal/app", "knockout", "server", "moment"], function(app, ko, serve
     name("");
     text("");
     list.removeAll();
-    
+
     server.get("find", { options: "members" }, function(error, data)
     {
       loading(false);
-      
+
       if (error)
       {
         console.log(error);
         errorText(error);
         return;
       }
-      
+
       var unsorted = [];
-      
+
       for (var n in data)
       {
         unsorted.push(data[n]);
       }
-      
-      
+
+
       list(unsorted.sort(function(a, b)
       {
         if (a.name < b.name)
@@ -67,7 +67,7 @@ define(["durandal/app", "knockout", "server", "moment"], function(app, ko, serve
 
         return 0;
       }));
-      
+
     }.bind(this));
   };
 
@@ -100,17 +100,43 @@ define(["durandal/app", "knockout", "server", "moment"], function(app, ko, serve
     {
       event.stopPropagation();
       event.preventDefault();
-      
+
       editing(false);
       current(data);
+    },
+    create: function(data, event) {
+      event.stopPropagation();
+      event.preventDefault();
+
+      var newUser = {
+        name: "",
+        street: "",
+        address: "",
+        homephone: "",
+        mobilephone: "",
+        email: "",
+        assignments: "",
+        joined: "",
+        referer: "",
+        boattype: "",
+        boatname: "",
+        sailnumber: "",
+        vhf: "",
+        harbor: "",
+        username: "",
+        admin: false
+      };
+
+      editing(true);
+      current(newUser);
     },
     edit: function(data, event)
     {
       event.stopPropagation();
       event.preventDefault();
-      
+
       editing(!editing());
-      
+
       if (editing())
       {
         formName(current().name);
@@ -154,7 +180,7 @@ define(["durandal/app", "knockout", "server", "moment"], function(app, ko, serve
     {
       event.stopPropagation();
       event.preventDefault();
-      
+
       app.showMessage("Är du säker på att du vill ta bort personen?", "Ta bort", ["Ta bort", "Avbryt"]).done(function(answer)
       {
         if (answer === "Ta bort")
@@ -162,14 +188,14 @@ define(["durandal/app", "knockout", "server", "moment"], function(app, ko, serve
           server.get("delete", { item: current(), collection: "members" }, function(error, data)
           {
             loading(false);
-            
+
             if (error)
             {
               console.log(error);
               errorText(error);
               return;
             }
-            
+
             current(false);
             load();
           });
@@ -179,15 +205,15 @@ define(["durandal/app", "knockout", "server", "moment"], function(app, ko, serve
     submit: function()
     {
       errorText(false);
-      
+
       if (formName() === "")
       {
         errorText("Alla fält måste vara ifyllda");
         return;
       }
-      
+
       var item = JSON.parse(JSON.stringify(current()));
-      
+
       item.name = formName();
       item.street = formStreet();
       item.address = formAddress();
@@ -204,21 +230,21 @@ define(["durandal/app", "knockout", "server", "moment"], function(app, ko, serve
       item.harbor = formHarbor();
       item.username = formUsername();
       item.admin = formAdmin();
-      
-      
+
+
       loading(true);
-      
+
       server.get("save", { item: item, collection: "members" }, function(error, data)
       {
         loading(false);
-        
+
         if (error)
         {
           console.log(error);
           errorText(error);
           return;
         }
-        
+
         editing(false);
         load();
         current(data);

@@ -11,7 +11,7 @@ function Action_GetList($id)
   {
     throw new Exception("Laddningen misslyckades, ladda om sidan!");
   }
-  
+
   if (strpos($_SERVER["HTTP_HOST"], "seniorseglarna.se") !== false)
   {
     $html = utf8_decode($html);
@@ -53,32 +53,32 @@ function Action_GetList($id)
     {
       $name = $elements->item($i)->nodeValue;
       $date = $name;
-      
+
       $pos = strpos($name, ":");
-      
+
       if ($pos !== false)
       {
         $date = trim(substr($name, 0, $pos));
         $name = trim(substr($name, $pos + 1));
       }
-      
-      
+
+
       $items[] = array("id" => $id, "name" => $name, "date" => $date, "type" => $type);
-      
+
       $id = false;
       $name = false;
       $date = false;
       $type = false;
     }
   }
-  
+
   function cmp($a, $b)
   {
     if (strpos($a["date"], "-") === false || strpos($b["date"], "-") === false)
     {
       return strnatcasecmp($a["date"], $b["date"]);
     }
-    
+
     return strnatcasecmp($b["date"], $a["date"]);
   }
 
@@ -223,6 +223,9 @@ function Action_Save($item, $collection)
     $keys[] = "`" . $gDatabase->real_escape_string($key) . "`";
     $values[] = "'" . $gDatabase->real_escape_string($value) . "'";
   }
+
+  $keys[] = "`password`";
+  $values[] = "SHA1('seglare')";
 
   $sqlQuery .= " (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $values) . ")";
 

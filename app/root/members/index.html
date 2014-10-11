@@ -4,11 +4,14 @@
       <i class="icon-spinner icon-spin active"></i>
       Loading...
     </div>
-    
+
     <div class="alert alert-danger" data-bind="visible: errorText() !== false, text: errorText"></div>
-    
+
     <ul class="nav nav-pills nav-stacked" data-bind="visible: !loading()">
-      <li class="nav-header">Medlemmar</li>
+        <li class="nav-header">Medlemmar</li>
+        <li data-bind="visible: user() && user().admin">
+            <a class="btn btn-primary" data-bind="click: create">Skapa ny</a>
+        </li>
         <!-- ko foreach: list -->
           <li data-bind="css: { active: $parent.current() === $data }, visible: $parent.user() && $parent.user().admin || $data.username !== 'admin'">
             <a href="#" data-bind="text: $data.name, click: $parent.select"></a>
@@ -18,22 +21,22 @@
   </div>
   <form class="content-main" data-bind="if: current() !== false, submit: submit">
     <div class="document-title">
-      
+
       <button class="btn btn-xs btn-danger pull-right" style="margin-left: 5px;" data-bind="click: remove, visible: user() && user().admin && !editing()">Ta bort</button>
       <button class="btn btn-xs btn-primary pull-right" data-bind="click: edit, visible: (user() && user().admin) && !editing()">Ändra</button>
-      
+
       <button class="btn btn-xs btn-default pull-right" style="margin-left: 5px;" data-bind="click: edit, visible: editing">Avbryt</button>
       <button type="submit" class="btn btn-xs btn-primary pull-right" data-bind="visible: editing">Spara</button>
-      
+
       <span data-bind="text: current().name"></span>
     </div>
     <div class="document-main scroll">
       <div class="content-container" style="margin-top: 30px;">
         <div class="row">
           <div class="col-md-4">
-          
+
             <h3>Information</h3>
-            
+
             <table class="table table-striped">
               <tbody>
                 <tr>
@@ -118,7 +121,7 @@
                 </tr>
               </tbody>
             </table>
-            
+
           </div>
           <div class="col-md-4">
 
@@ -164,11 +167,11 @@
               </tbody>
             </table>
           </div>
-          
+
           <div class="col-md-4">
             <img style="width: 100%; border-radius: 3px;" src="" data-bind="attr: { src: 'http://www.seniorseglarna.se/members/' + current()._id + '.jpg' }">
           </div>
-          
+
         </div>
       </div>
     </div>
