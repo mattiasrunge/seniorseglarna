@@ -224,8 +224,11 @@ function Action_Save($item, $collection)
     $values[] = "'" . $gDatabase->real_escape_string($value) . "'";
   }
 
-  $keys[] = "`password`";
-  $values[] = "SHA1('seglare')";
+  if ($collection != "guestbook")
+  {
+    $keys[] = "`password`";
+    $values[] = "SHA1('seglare')";
+  }
 
   $sqlQuery .= " (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $values) . ")";
 
