@@ -74,10 +74,18 @@ define(['plugins/http', 'knockout', 'server'], function(http, ko, server)
           return;
         }
         
-        for (var n = 0; n < Math.min(data.length, 10); n++)
+        data.sort(function(a, b)
         {
-          doRequest(data[n]);
-          programList.push(data[n]);
+          return a.date.localeCompare(b.date);
+        });
+        
+        for (var n = 0; n < data.length; n++)
+        {
+          if (data[n].type !== "folder")
+          {
+            doRequest(data[n]);
+            programList.push(data[n]);
+          }
         }
       });
       
