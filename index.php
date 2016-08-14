@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="css/ie10mobile.css" />
         <link rel="stylesheet" href="lib/durandal/css/durandal.css" />
         <link rel="stylesheet" href="css/style.css" />
-        
+
         <script type="text/javascript">
             if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
                 var msViewportStyle = document.createElement("style");

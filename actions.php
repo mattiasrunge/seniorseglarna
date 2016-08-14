@@ -21,8 +21,7 @@ function Action_GetList($id)
   $DOM->loadHTML('<?xml encoding="UTF-8">' . $html);
   $DOM->encoding = 'UTF-8'; // insert proper
 
-  $elements = $DOM->getElementsByTagName('*');
-
+  $elements = $DOM->getElementsByTagName('script');
 
   $items = array();
 
@@ -33,42 +32,41 @@ function Action_GetList($id)
 
   for ($i = 0; $i < $elements->length; $i++)
   {
-    if ($elements->item($i)->getAttribute("class") === "flip-entry")
+    if (strpos($elements->item($i)->textContent, "_DRIVE_ivd") !== false)
     {
-      $id = str_replace("entry-", "", $elements->item($i)->getAttribute("id"));
-    }
-    else if ($elements->item($i)->getAttribute("class") === "flip-entry-list-icon")
-    {
-      if ($elements->item($i + 1)->tagName === "img")
+      $str = $elements->item($i)->textContent;
+
+      $out = preg_replace_callback("(\\\\x([0-9a-f]{2}))i", function($a) {
+        return chr(hexdec($a[1]));
+      }, $str);
+
+      $out = str_replace("window['_DRIVE_ivd'] = '", "", $out);
+
+      $out = substr($out, 0, strpos($out, ";") - 1);
+      $out = str_replace("\\n", "", $out);
+
+      $json = json_decode($out);
+
+      for ($c = 0; $c < count($json[0]); $c++)
       {
-        $filename = basename($elements->item($i + 1)->getAttribute("src"));
-        list($a, $b, $type) = explode("_", $filename);
-      }
-      else if ($elements->item($i + 1)->tagName === "div")
-      {
-        $type = "folder";
-      }
-    }
-    else if ($elements->item($i)->getAttribute("class") === "flip-entry-title")
-    {
-      $name = $elements->item($i)->nodeValue;
-      $date = $name;
+        $id = $json[0][$c][0];
+        $name = $json[0][$c][2];
+        $type = str_replace("application/vnd.google-apps.", "", $json[0][$c][3]);
 
-      $pos = strpos($name, ":");
+        $date = $name;
 
-      if ($pos !== false)
-      {
-        $date = trim(substr($name, 0, $pos));
-        $name = trim(substr($name, $pos + 1));
+        $pos = strpos($name, ":");
+
+        if ($pos !== false)
+        {
+          $date = trim(substr($name, 0, $pos));
+          $name = trim(substr($name, $pos + 1));
+        }
+
+        $items[] = array("id" => $id, "name" => $name, "date" => $date, "type" => $type);
       }
 
-
-      $items[] = array("id" => $id, "name" => $name, "date" => $date, "type" => $type);
-
-      $id = false;
-      $name = false;
-      $date = false;
-      $type = false;
+      break;
     }
   }
 
