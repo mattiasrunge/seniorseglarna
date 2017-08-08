@@ -96,6 +96,17 @@ try
       $response["data"] = Action_GetList($args["id"]);
       break;
     }
+    case "getListDebug":
+    {
+      if (empty($args["id"]))
+      {
+        $response["error"] = "Id is empty, list failed!";
+        break;
+      }
+
+      $response["data"] = Action_GetListDebug($args["id"]);
+      break;
+    }
     case "echo":
     {
       $response["data"] = $args;

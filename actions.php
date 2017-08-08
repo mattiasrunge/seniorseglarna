@@ -5,6 +5,52 @@ require_once("helpers.php");
 
 function Action_GetList($id)
 {
+  $out = file_get_contents("https://www.googleapis.com/drive/v3/files?q=%27" . $id . "%27+in+parents&key=AIzaSyAzTGs7-CapqJw6sHT67vDhNfJ0TPu6LL8");
+
+  if ($html === false)
+  {
+    throw new Exception("Laddningen misslyckades, ladda om sidan!");
+  }
+
+//   $out = utf8_decode($out);
+  $json = json_decode($out);
+
+  for ($i = 0; $i < count($json->files); $i++)
+  {
+    $item = $json->files[$i];
+
+    $name = $item->name;
+    $date = $name;
+    $type = str_replace("application/vnd.google-apps.", "", $item->mimeType);
+
+    $pos = strpos($name, ":");
+
+    if ($pos !== false)
+    {
+        $date = trim(substr($name, 0, $pos));
+        $name = trim(substr($name, $pos + 1));
+    }
+
+    $items[] = array("id" => $item->id, "name" => $name, "date" => $date, "type" => $type);
+  }
+
+  function cmp($a, $b)
+  {
+    if (strpos($a["date"], "-") === false || strpos($b["date"], "-") === false)
+    {
+      return strnatcasecmp($a["date"], $b["date"]);
+    }
+
+    return strnatcasecmp($b["date"], $a["date"]);
+  }
+
+  usort($items, "cmp");
+
+  return $items;
+}
+
+function Action_GetList2($id)
+{
   $html = file_get_contents("https://drive.google.com/folderview?id=" . $id);
 
   if ($html === false)
