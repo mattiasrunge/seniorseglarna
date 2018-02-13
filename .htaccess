@@ -1,2 +1,4 @@
 
 header add “disablevcache” “true”
+CacheDisable public /
+CacheDisable private /

@@ -2,6 +2,9 @@
 
 $html = file_get_contents("https://docs.google.com/document/d/" . $_GET["id"] . "/pub?embedded=true");
 
+//echo $html;
+
+
 $styleStart = strpos($html, "<style");
 $styleEnd = strrpos($html, "</style>", $styleStart) + 8;
 
@@ -18,6 +21,6 @@ header("Pragma: no-cache"); // HTTP 1.0.
 header("Expires: 0"); // Proxies.
 
 //echo substr($html, $styleStart, $styleEnd - $styleStart);
-echo utf8_encode(html_entity_decode(utf8_decode(substr($html, $bodyStart, $bodyEnd - $bodyStart))));
+echo html_entity_decode(utf8_decode(substr($html, $bodyStart, $bodyEnd - $bodyStart)));
 
 ?>

@@ -169,7 +169,10 @@
           </div>
 
           <div class="col-md-4">
-            <img style="width: 100%; border-radius: 3px;" src="" data-bind="attr: { src: 'http://www.seniorseglarna.se/members/' + current()._id + '.jpg' }">
+            <a href="#" target="_blank" data-bind="attr: { href: '/upload.php?id=' + current()._id }, visible: editing">
+              Ladda upp bild
+            </a>
+            <img style="width: 100%; border-radius: 3px;" src="" data-bind="visible: !editing(), attr: { src: 'http://www.seniorseglarna.se/members/' + current()._id + '.jpg' }">
           </div>
 
         </div>
